@@ -47,7 +47,7 @@ export default function CoachingHub() {
   return (
     <>
       <PageHero
-        eyebrow="Coaching Division"
+        eyebrow="Coaching Classes"
         title="Railway & competitive coaching that scales with"
         highlight="your level"
         subtitle="Structured target batches for Railway ALP, General Technical and Non-Technical exams — taught from absolute basics to advanced, exam-cracking level."

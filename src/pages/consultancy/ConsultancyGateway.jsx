@@ -46,7 +46,7 @@ export default function ConsultancyGateway() {
   return (
     <>
       <PageHero
-        eyebrow="Career Consultancy"
+        eyebrow="Career Counselling"
         title="The right career decision, backed by"
         highlight="expert guidance"
         subtitle="From profile evaluation to final admission, our advisors map a personalised path across Tech, Management, Law, Medical and Nursing careers."

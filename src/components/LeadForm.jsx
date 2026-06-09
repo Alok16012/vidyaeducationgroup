@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { CheckCircle2, Loader2 } from 'lucide-react'
 
-const SERVICES = ['Coaching', 'Premium Library', 'Simple Library', 'Career Consultancy']
+const SERVICES = ['Coaching', 'Premium Library', 'Simple Library', 'Career Counselling']
 
 export default function LeadForm({ compact = false, defaultService = 'Coaching' }) {
   const [form, setForm] = useState({

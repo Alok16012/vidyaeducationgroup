@@ -10,12 +10,14 @@ import OnlineClasses from './pages/coaching/OnlineClasses.jsx'
 import OfflineCenter from './pages/coaching/OfflineCenter.jsx'
 import Faculty from './pages/coaching/Faculty.jsx'
 import LibraryHub from './pages/library/LibraryHub.jsx'
-import PremiumWing from './pages/library/PremiumWing.jsx'
-import SimpleWing from './pages/library/SimpleWing.jsx'
+import LibraryWing from './pages/library/LibraryWing.jsx'
 import ConsultancyGateway from './pages/consultancy/ConsultancyGateway.jsx'
 import TechAdmissions from './pages/consultancy/TechAdmissions.jsx'
 import MgmtLaw from './pages/consultancy/MgmtLaw.jsx'
 import Medical from './pages/consultancy/Medical.jsx'
+import AdmissionHub from './pages/consultancy/AdmissionHub.jsx'
+import TiffinService from './pages/TiffinService.jsx'
+import Hostel from './pages/Hostel.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function ScrollToTop() {
@@ -43,13 +45,19 @@ export default function App() {
           <Route path="/coaching/faculty" element={<Faculty />} />
 
           <Route path="/library" element={<LibraryHub />} />
-          <Route path="/library/premium" element={<PremiumWing />} />
-          <Route path="/library/simple" element={<SimpleWing />} />
+          <Route path="/library/toppers" element={<LibraryWing tier="toppers" />} />
+          <Route path="/library/digital" element={<LibraryWing tier="digital" />} />
+          <Route path="/library/premium" element={<LibraryWing tier="premium" />} />
+          <Route path="/library/luxury" element={<LibraryWing tier="luxury" />} />
 
           <Route path="/consultancy" element={<ConsultancyGateway />} />
+          <Route path="/consultancy/admission" element={<AdmissionHub />} />
           <Route path="/consultancy/tech" element={<TechAdmissions />} />
           <Route path="/consultancy/mgmt-law" element={<MgmtLaw />} />
           <Route path="/consultancy/medical" element={<Medical />} />
+
+          <Route path="/tiffin" element={<TiffinService />} />
+          <Route path="/hostel" element={<Hostel />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

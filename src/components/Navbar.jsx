@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X, ChevronDown, Phone, ArrowRight } from 'lucide-react'
+import { Menu, X, ChevronDown, Phone, ArrowRight, MapPin } from 'lucide-react'
 import Logo from './Logo.jsx'
 import { NAV, BRAND } from '../data/site.js'
 
@@ -37,8 +37,11 @@ export default function Navbar() {
       {/* top bar */}
       <div className="hidden bg-navy text-white lg:block">
         <div className="container-page flex h-9 items-center justify-between text-xs">
-          <p className="font-medium text-brand-100">
-            {BRAND.tagline} · <span className="text-white">{BRAND.address}</span>
+          <p className="flex items-center gap-1.5 font-medium text-brand-100">
+            {BRAND.tagline} ·
+            <span className="inline-flex items-center gap-1 font-semibold text-amber-300">
+              <MapPin className="h-3.5 w-3.5" /> {BRAND.address}
+            </span>
           </p>
           <div className="flex items-center gap-4">
             {BRAND.phones.map((p, i) => (

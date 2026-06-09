@@ -14,6 +14,8 @@ import {
   ArrowRight,
   Crown,
   BookMarked,
+  Tablet,
+  Gem,
 } from 'lucide-react'
 import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection, Pill } from '../../components/ui.jsx'
 import { BRAND } from '../../data/site.js'
@@ -57,53 +59,37 @@ export default function LibraryHub() {
           <Reveal>
             <SectionHeading
               eyebrow="Two study wings"
-              title="Choose the wing that suits you"
-              subtitle="From budget-friendly desks to executive ergonomic cabins — premium comfort or simple focus, your choice."
+              title="Choose the library that suits you"
+              subtitle="Four tiers — from an affordable focused study hall to a five-star luxury cabin experience. Pick the one that fits your goal and budget."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            <Reveal>
-              <Link to="/library/premium" className="card group block overflow-hidden">
-                <div className="flex items-center justify-between bg-gradient-to-br from-crimson to-red-700 p-6 text-white">
-                  <div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { to: '/library/toppers', icon: BookMarked, tag: 'Value', name: 'Toppers Library', desc: 'Affordable focused study hall with desks, lighting and charging points.', grad: 'bg-navy-gradient', pills: ['Affordable', 'Good Lighting', 'Reference Books'] },
+              { to: '/library/digital', icon: Tablet, tag: 'Digital', name: 'Toppers Digital Library', desc: 'Tablet access, e-books, online mock tests and high-speed fiber Wi-Fi.', grad: 'bg-gradient-to-br from-cyan-500 to-blue-700', pills: ['Tablets', 'E-Books', 'Online Tests'] },
+              { to: '/library/premium', icon: Crown, tag: 'Premium', name: 'Toppers Premium Library', desc: 'Executive ergonomic AC cabins, individual plug points and tablet access.', grad: 'bg-gradient-to-br from-crimson to-red-700', pills: ['AC Cabins', 'Tablet Access', 'Fiber Wi-Fi'] },
+              { to: '/library/luxury', icon: Gem, tag: 'Luxury', name: 'Toppers Luxury Library', desc: 'Five-star private cabins, recliner seating, lounge and priority concierge.', grad: 'bg-gradient-to-br from-amber-500 to-yellow-600', pills: ['Private Cabins', 'Lounge', 'Concierge'] },
+            ].map((w, i) => (
+              <Reveal key={w.to} delay={(i % 4) * 0.08}>
+                <Link to={w.to} className="card group flex h-full flex-col overflow-hidden">
+                  <div className={`flex items-center justify-between ${w.grad} p-5 text-white`}>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-bold">
-                      <Crown className="h-3.5 w-3.5" /> Premium
+                      <w.icon className="h-3.5 w-3.5" /> {w.tag}
                     </span>
-                    <p className="mt-3 font-display text-2xl font-bold">Premium & Luxury Wing</p>
+                    <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
                   </div>
-                  <ArrowRight className="h-6 w-6 transition group-hover:translate-x-1" />
-                </div>
-                <div className="p-6">
-                  <p className="text-sm text-slate-600">Executive ergonomic cabins, individual plug points, fiber Wi-Fi and digital tablet access.</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <Pill tone="crimson">Ergonomic Cabins</Pill>
-                    <Pill tone="crimson">Tablet Access</Pill>
-                    <Pill tone="crimson">Fiber Wi-Fi</Pill>
+                  <div className="flex flex-1 flex-col p-5">
+                    <p className="font-display text-lg font-bold text-navy">{w.name}</p>
+                    <p className="mt-2 flex-1 text-sm text-slate-600">{w.desc}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {w.pills.map((p) => (
+                        <Pill key={p}>{p}</Pill>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <Link to="/library/simple" className="card group block overflow-hidden">
-                <div className="flex items-center justify-between bg-navy-gradient p-6 text-white">
-                  <div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-bold">
-                      <BookMarked className="h-3.5 w-3.5" /> Value
-                    </span>
-                    <p className="mt-3 font-display text-2xl font-bold">Simple Study Wing</p>
-                  </div>
-                  <ArrowRight className="h-6 w-6 transition group-hover:translate-x-1" />
-                </div>
-                <div className="p-6">
-                  <p className="text-sm text-slate-600">Budget-friendly desks, neat lighting, charging points and a solid reference-book inventory.</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <Pill>Affordable</Pill>
-                    <Pill>Good Lighting</Pill>
-                    <Pill>Reference Books</Pill>
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>

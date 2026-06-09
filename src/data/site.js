@@ -4,8 +4,8 @@ export const BRAND = {
   tagline: 'Right Guidance, Bright Future',
   taglineHi: 'सही मार्गदर्शन, उज्ज्वल भविष्य',
   address: 'Rampur Road, Near Sai Chowk, Patna, Bihar',
-  phones: ['+91 70616 59107', '+91 93049 54942'],
-  phonesRaw: ['+917061659107', '+919304954942'],
+  phones: ['+91 95044 46940', '+91 93049 54942'],
+  phonesRaw: ['+919504446940', '+919304954942'],
   email: 'info@vidyaeducationalservices.in',
   hours: [
     { day: 'Monday – Friday', time: '6:00 AM – 9:00 PM' },
@@ -22,29 +22,34 @@ export const NAV = [
     label: 'Coaching',
     to: '/coaching',
     children: [
-      { label: 'Coaching Hub', to: '/coaching', desc: 'Railway ALP & Technical batches' },
       { label: 'Online Classes', to: '/coaching/online', desc: 'Live + recorded lectures' },
       { label: 'Offline Center', to: '/coaching/offline', desc: 'Patna physical batches' },
-      { label: 'Faculty Profiles', to: '/coaching/faculty', desc: 'Meet our expert mentors' },
     ],
   },
   {
     label: 'Library',
     to: '/library',
     children: [
-      { label: 'Library Hub', to: '/library', desc: '24/7 study zone & seat booking' },
-      { label: 'Premium Digital Wing', to: '/library/premium', desc: 'Executive ergonomic cabins' },
-      { label: 'Simple Study Wing', to: '/library/simple', desc: 'Budget-friendly desks' },
+      { label: 'Toppers Library', to: '/library/toppers', desc: 'Affordable focused study hall' },
+      { label: 'Toppers Digital Library', to: '/library/digital', desc: 'Tablets, e-books & online tests' },
+      { label: 'Toppers Premium Library', to: '/library/premium', desc: 'Ergonomic AC cabins' },
+      { label: 'Toppers Luxury Library', to: '/library/luxury', desc: 'Five-star private cabins' },
     ],
   },
   {
     label: 'Consultancy',
     to: '/consultancy',
     children: [
-      { label: 'Consultancy Gateway', to: '/consultancy', desc: 'Career path counseling' },
-      { label: 'Tech & IT Admissions', to: '/consultancy/tech', desc: 'B.Tech, BCA, MCA' },
-      { label: 'Management & Law', to: '/consultancy/mgmt-law', desc: 'MBA, BBA, LLB' },
-      { label: 'Medical & Nursing', to: '/consultancy/medical', desc: 'Nursing, ANM, GNM' },
+      { label: 'Counselling', to: '/consultancy', desc: 'Career path & profile counselling' },
+      { label: 'Admission', to: '/consultancy/admission', desc: 'Tech, Management, Law, Medical & Nursing' },
+    ],
+  },
+  {
+    label: 'Hostel & Tiffin',
+    to: '/tiffin',
+    children: [
+      { label: 'Hostel', to: '/hostel', desc: 'Safe, comfortable student accommodation' },
+      { label: 'Tiffin Services', to: '/tiffin', desc: 'Healthy & tasty home-style meals' },
     ],
   },
   { label: 'About', to: '/about' },
@@ -61,10 +66,10 @@ export const NOTIFICATIONS = [
 ]
 
 export const STATS = [
-  { value: 8200, suffix: '+', label: 'Students Mentored' },
-  { value: 96, suffix: '%', label: 'Selection Success Rate' },
-  { value: 120, suffix: '+', label: 'Premium Library Seats' },
-  { value: 12, suffix: '+', label: 'Years of Trust' },
+  { value: 8, suffix: ' Lakh+', label: 'Students Mentored' },
+  { value: 85, suffix: '%', label: 'Selection Success Rate' },
+  { value: 650, suffix: '+', label: 'Premium Library Seats' },
+  { value: 10, suffix: '+', label: 'Years of Trust' },
 ]
 
 export const FACULTY = [

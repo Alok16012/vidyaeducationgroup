@@ -118,11 +118,11 @@ export default function About() {
                 </div>
                 <div className="mt-6 grid grid-cols-2 gap-3 text-center">
                   <div className="rounded-xl bg-white/10 p-3">
-                    <p className="font-display text-lg font-bold">8,200+</p>
+                    <p className="font-display text-lg font-bold">8 Lakh+</p>
                     <p className="text-[11px] text-brand-100">Students</p>
                   </div>
                   <div className="rounded-xl bg-white/10 p-3">
-                    <p className="font-display text-lg font-bold">96%</p>
+                    <p className="font-display text-lg font-bold">85%</p>
                     <p className="text-[11px] text-brand-100">Success</p>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default function About() {
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
               { role: 'Director’s Office', name: 'Mr. Chandan Kumar', desc: 'Overall vision, student welfare and quality of education.' },
-              { role: 'Academic Head', name: 'Coaching Division', desc: 'Curriculum, faculty coordination and batch planning.' },
+              { role: 'Academic Head', name: 'Coaching Classes', desc: 'Curriculum, faculty coordination and batch planning.' },
               { role: 'Library Operations', name: 'Study Wing Team', desc: '24/7 seat allotment, discipline and digital facilities.' },
               { role: 'Consultancy Cell', name: 'Admission Advisors', desc: 'Career counselling, applications and college tie-ups.' },
             ].map((m, i) => (

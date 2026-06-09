@@ -15,6 +15,7 @@ import {
   TrendingUp,
   Phone,
   Quote,
+  Utensils,
 } from 'lucide-react'
 import { Reveal, SectionHeading, StatCounter, FeatureCard, CTASection, Pill } from '../components/ui.jsx'
 import LeadForm from '../components/LeadForm.jsx'
@@ -22,7 +23,7 @@ import { BRAND, STATS, NOTIFICATIONS } from '../data/site.js'
 
 const ROUTES = [
   {
-    title: 'Coaching Division',
+    title: 'Coaching Classes',
     desc: 'Railway ALP, Technical & Non-Technical target batches from basic to advanced level.',
     icon: GraduationCap,
     to: '/coaching',
@@ -38,12 +39,20 @@ const ROUTES = [
     points: ['24/7 Access', 'Plug Points', 'Seat Booking'],
   },
   {
-    title: 'Career Consultancy',
+    title: 'Career Counselling',
     desc: 'Expert admission guidance for Tech, Management, Law, Medical & Nursing careers.',
     icon: Compass,
     to: '/consultancy',
     accent: 'from-navy to-slateblue',
     points: ['Profile Tracking', 'Top Colleges', 'End-to-end'],
+  },
+  {
+    title: 'Tiffin Service',
+    desc: 'Healthy & tasty home-style tiffin (mess) delivered fresh to your library cabin or hostel.',
+    icon: Utensils,
+    to: '/tiffin',
+    accent: 'from-emerald-500 to-emerald-700',
+    points: ['Pure Veg', 'Fresh Daily', 'Free Delivery'],
   },
 ]
 
@@ -115,8 +124,8 @@ function Hero() {
             transition={{ delay: 0.12 }}
             className="mt-6 max-w-xl text-base leading-relaxed text-brand-100 sm:text-lg"
           >
-            Coaching, a premium 24/7 digital library, and professional career consultancy — one
-            integrated ecosystem dedicated to your success. <span className="font-semibold text-white">कमजोर विद्यार्थियों पर विशेष ध्यान।</span>
+            Coaching, a premium 24/7 library, and professional career counselling and{' '}
+            <span className="font-semibold text-white">tiffin services (healthy and tasty)</span>.
           </motion.p>
 
           <motion.div
@@ -140,13 +149,13 @@ function Hero() {
             className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-brand-100"
           >
             <span className="flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-crimson" /> 12+ years of trust
+              <ShieldCheck className="h-5 w-5 text-crimson" /> 10+ years of trust
             </span>
             <span className="flex items-center gap-2">
               <Clock className="h-5 w-5 text-crimson" /> 24/7 Library
             </span>
             <span className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-crimson" /> 96% Success Rate
+              <Star className="h-5 w-5 text-crimson" /> 85% Success Rate
             </span>
           </motion.div>
         </div>
@@ -162,7 +171,7 @@ function Hero() {
             <div className="rounded-[20px] bg-white p-5 shadow-premium">
               <div className="flex items-center justify-between">
                 <p className="font-display text-sm font-bold text-navy">Choose your path</p>
-                <Pill tone="crimson">3 Dashboards</Pill>
+                <Pill tone="crimson">4 Services</Pill>
               </div>
               <div className="mt-4 space-y-3">
                 {ROUTES.map((r) => (
@@ -190,7 +199,7 @@ function Hero() {
           </div>
           <div className="absolute -bottom-5 -left-5 hidden rounded-2xl bg-white p-4 shadow-premium sm:block">
             <p className="font-display text-2xl font-extrabold text-navy">
-              8,200<span className="text-crimson">+</span>
+              8 Lakh<span className="text-crimson">+</span>
             </p>
             <p className="text-xs font-medium text-slate-500">Students mentored</p>
           </div>
@@ -228,12 +237,12 @@ function Routes3() {
       <div className="container-page">
         <Reveal>
           <SectionHeading
-            eyebrow="Three pillars, one campus"
+            eyebrow="Four pillars, one campus"
             title="Everything a serious aspirant needs"
-            subtitle="From classroom to library to career placement — explore the division that fits where you are right now."
+            subtitle="From classroom to library to career placement and healthy daily meals — explore the division that fits where you are right now."
           />
         </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {ROUTES.map((r, i) => (
             <Reveal delay={i * 0.1} key={r.to}>
               <div className="card group flex h-full flex-col overflow-hidden">
@@ -279,11 +288,11 @@ function Stats() {
 
 function WhyUs() {
   const feats = [
+    { icon: TrendingUp, title: 'Coaching Classes', desc: 'Result-driven online & offline batches for Railway ALP, Technical and competitive exams — basics to advanced.', accent: 'slateblue' },
+    { icon: Wifi, title: 'Premium 24/7 Library', desc: 'Ergonomic cabins, fiber Wi-Fi, plug points and tablet access across premium and simple study wings.', accent: 'crimson' },
+    { icon: Compass, title: 'Career Counselling', desc: 'End-to-end admission guidance across Tech, Management, Law, Medical & Nursing careers.', accent: 'navy' },
+    { icon: Utensils, title: 'Tiffin Service (Mess)', desc: 'Healthy & tasty home-style pure-veg meals, cooked fresh daily and delivered to your cabin or hostel.', accent: 'slateblue' },
     { icon: Users, title: 'Special Care for Weak Students', desc: 'Director Mr. Chandan Kumar personally ensures कमजोर विद्यार्थी get extra mentoring and remedial classes.', accent: 'crimson' },
-    { icon: Wifi, title: 'High-Speed Digital Library', desc: 'Fiber Wi-Fi, individual plug points and tablet access points across premium and simple wings.', accent: 'slateblue' },
-    { icon: TrendingUp, title: 'Result-Driven Coaching', desc: 'Structured batches scaling from basics to advanced for Railway ALP & Technical exams.', accent: 'navy' },
-    { icon: Compass, title: 'End-to-End Consultancy', desc: 'From profile evaluation to final admission across Tech, Management, Law & Medical.', accent: 'slateblue' },
-    { icon: Clock, title: '24/7 Study Environment', desc: 'A disciplined, peaceful and CCTV-monitored zone open round the clock, every day.', accent: 'crimson' },
     { icon: ShieldCheck, title: 'Trusted & Affordable', desc: 'Premium facilities at the most student-friendly fees in Patna — value without compromise.', accent: 'navy' },
   ]
   return (
@@ -291,7 +300,7 @@ function WhyUs() {
       <div className="container-page">
         <Reveal>
           <SectionHeading
-            eyebrow="Why Vidya"
+            eyebrow="Why Vidya Education Group"
             title="Built around the student, not the syllabus"
             subtitle="A rare combination of disciplined coaching, premium infrastructure and genuine personal care."
           />
@@ -321,7 +330,7 @@ function Testimonials() {
           <SectionHeading
             eyebrow="Student voices"
             title="Stories of right guidance"
-            subtitle="Real results from students who trusted Vidya Educational Services with their future."
+            subtitle="Real results from students who trusted Vidya Education Group with their future."
           />
         </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -361,6 +370,7 @@ function LeadSection() {
           />
           <ul className="mt-8 space-y-4">
             {[
+              { icon: Clock, label: 'Free consultation timing: 8:00 AM – 8:00 PM (all days)' },
               { icon: Phone, label: 'Instant call back from our team' },
               { icon: Users, label: 'One-on-one career counselling' },
               { icon: ShieldCheck, label: 'No spam — your details stay private' },
