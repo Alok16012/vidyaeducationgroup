@@ -21,6 +21,7 @@ import {
   OFFLINE_COURSES,
   TARGET_COURSES,
   TEST_SERIES,
+  offlineCoursePath,
 } from '../../data/coaching.js'
 
 export default function CoachingHub() {
@@ -182,7 +183,7 @@ export default function CoachingHub() {
                     <span className="text-sm text-slate-400 line-through">{course.fee}</span>
                     <span className="font-display text-xl font-extrabold text-crimson">{course.offer}</span>
                   </div>
-                  <Link to="/coaching/offline" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-slateblue hover:text-crimson">
+                  <Link to={offlineCoursePath(course)} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-slateblue hover:text-crimson">
                     Course Detail <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>

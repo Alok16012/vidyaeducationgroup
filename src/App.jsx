@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard.jsx'
 import CoachingHub from './pages/coaching/CoachingHub.jsx'
 import OnlineClasses from './pages/coaching/OnlineClasses.jsx'
 import OfflineCenter from './pages/coaching/OfflineCenter.jsx'
+import OfflineCourseDetail from './pages/coaching/OfflineCourseDetail.jsx'
 import Faculty from './pages/coaching/Faculty.jsx'
 import LibraryHub from './pages/library/LibraryHub.jsx'
 import LibraryWing from './pages/library/LibraryWing.jsx'
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/coaching" element={<CoachingHub />} />
           <Route path="/coaching/online" element={<OnlineClasses />} />
           <Route path="/coaching/offline" element={<OfflineCenter />} />
+          <Route path="/coaching/offline/:slug" element={<OfflineCourseDetail />} />
           <Route path="/coaching/faculty" element={<Faculty />} />
 
           <Route path="/library" element={<LibraryHub />} />

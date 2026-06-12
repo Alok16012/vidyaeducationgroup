@@ -17,8 +17,8 @@ import {
   COACHING_ADDRESS,
   COACHING_FEATURES,
   OFFLINE_COURSES,
-  courseDetailsUrl,
   getFacultyForCourse,
+  offlineCoursePath,
 } from '../../data/coaching.js'
 
 function initials(name) {
@@ -71,14 +71,12 @@ function CourseTable() {
                     </div>
                   </td>
                   <td className="px-5 py-4">
-                    <a
-                      href={courseDetailsUrl(course.course)}
-                      target="_blank"
-                      rel="noreferrer"
+                    <Link
+                      to={offlineCoursePath(course)}
                       className="inline-flex items-center gap-2 rounded-xl bg-crimson px-3 py-2 text-xs font-bold text-white transition hover:bg-red-700"
                     >
                       Course Detail <ArrowRight className="h-3.5 w-3.5" />
-                    </a>
+                    </Link>
                   </td>
                 </tr>
               )

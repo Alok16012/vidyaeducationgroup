@@ -158,20 +158,22 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 320, damping: 34 }}
-              className="fixed right-0 top-0 z-50 flex h-full w-[86%] max-w-sm flex-col bg-white shadow-premium lg:hidden"
+              className="fixed inset-0 z-50 flex h-dvh w-full flex-col overflow-hidden bg-white shadow-premium lg:hidden"
             >
-              <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-                <Logo />
-                <button
-                  onClick={() => setOpen(false)}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200"
-                  aria-label="Close menu"
-                >
-                  <X className="h-5 w-5" />
-                </button>
+              <div className="shrink-0 bg-white">
+                <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+                  <Logo />
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200"
+                    aria-label="Close menu"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-4 py-4">
+              <div className="flex-1 overflow-y-auto bg-white px-4 py-4">
                 {NAV.map((item) =>
                   item.children ? (
                     <div key={item.label} className="border-b border-slate-100 py-1">
@@ -228,7 +230,7 @@ export default function Navbar() {
                 )}
               </div>
 
-              <div className="border-t border-slate-100 p-4">
+              <div className="shrink-0 border-t border-slate-100 bg-white p-4">
                 <Link to="/contact" className="btn-crimson w-full">
                   Enroll Now <ArrowRight className="h-4 w-4" />
                 </Link>

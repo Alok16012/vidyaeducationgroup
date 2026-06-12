@@ -73,59 +73,87 @@ export const TEST_SERIES = [
 export const OFFLINE_COURSES = [
   {
     course: 'Maths Foundation',
+    slug: 'maths-foundation',
     time: '1 PM to 2 PM',
     duration: '6 to 7 M',
     fee: '3100/-',
     offer: '2499/-',
     faculty: 'Er. RD Yadav',
+    overview: 'Foundation maths course for students who need strong basics, speed calculation and exam-level practice.',
+    syllabus: ['Number system', 'Percentage and ratio', 'Profit, loss and discount', 'Time, speed and distance', 'Simplification and DI basics'],
+    outcomes: ['Clear core concepts', 'Improve calculation speed', 'Build exam-ready problem solving'],
   },
   {
     course: 'English Foundation',
+    slug: 'english-foundation',
     time: '9 AM to 10 AM',
     duration: '6 to 7 M',
     fee: '4000/-',
     offer: '2499/-',
     faculty: 'English Faculty',
+    overview: 'English foundation batch for grammar, vocabulary and exam-oriented comprehension practice.',
+    syllabus: ['Grammar rules', 'Vocabulary building', 'Error detection', 'Sentence improvement', 'Reading comprehension'],
+    outcomes: ['Better grammar accuracy', 'Stronger vocabulary', 'Confidence in English sections'],
   },
   {
     course: 'Reasoning Foundation',
+    slug: 'reasoning-foundation',
     time: '10 to 11 AM',
     duration: '5 to 6 M',
     fee: '3100/-',
     offer: '2499/-',
     faculty: 'Deepak Sir',
+    overview: 'Reasoning course for verbal, non-verbal and puzzle-based questions with regular practice.',
+    syllabus: ['Analogy and classification', 'Coding-decoding', 'Blood relation', 'Direction sense', 'Puzzles and seating arrangement'],
+    outcomes: ['Faster logic building', 'Better puzzle approach', 'Accuracy in reasoning questions'],
   },
   {
     course: 'G.S Foundation',
+    slug: 'gs-foundation',
     time: '12 PM to 01 PM',
     duration: '6 to 7 M',
     fee: '3100/-',
     offer: '2499/-',
     faculty: 'Er. S.K Rajan',
+    overview: 'General Studies foundation course for competitive exams with current and static topics.',
+    syllabus: ['History basics', 'Geography basics', 'Polity basics', 'Economy basics', 'Current affairs revision'],
+    outcomes: ['Strong G.S base', 'Regular revision habit', 'Better static GK coverage'],
   },
   {
     course: 'Lucent',
+    slug: 'lucent',
     time: 'Batch timing',
     duration: 'Monthly',
     fee: '199/- Month',
     offer: '199/- Month',
     faculty: 'G.S Faculty',
+    overview: 'Lucent-based G.K and G.S monthly course for quick revision and exam recall.',
+    syllabus: ['Lucent GK chapters', 'Important one-liners', 'Static GK revision', 'Practice questions', 'Monthly revision'],
+    outcomes: ['Quick GK revision', 'Better recall', 'Affordable monthly practice'],
   },
   {
     course: 'Science Special',
+    slug: 'science-special',
     time: '12 to 01 PM',
     duration: '3 to 4 M',
     fee: '999/-',
     offer: '499/-',
     faculty: 'Er. S.K Rajan',
+    overview: 'Focused science course for Railway and state-level exams with concept and fact-based preparation.',
+    syllabus: ['Physics basics', 'Chemistry basics', 'Biology basics', 'Railway science questions', 'Revision tests'],
+    outcomes: ['Clear science fundamentals', 'Railway-focused practice', 'High-value revision'],
   },
   {
     course: 'Railway ALP (Target)',
+    slug: 'railway-alp-target',
     time: '6 to 9 PM',
     duration: 'Till Exam',
     fee: '6999/-',
     offer: '2999/-',
     faculty: 'Er. S.K Rajan',
+    overview: 'Target batch for Railway ALP students with exam-focused classes and practice till exam.',
+    syllabus: ['Railway ALP syllabus plan', 'Science and technical basics', 'Maths practice', 'Reasoning practice', 'Mock and revision sessions'],
+    outcomes: ['Targeted ALP preparation', 'Till-exam support', 'Practice with revision strategy'],
   },
 ]
 
@@ -140,6 +168,14 @@ export function courseDetailsUrl(course) {
   return `https://wa.me/${BRAND.phonesRaw[0].replace('+', '')}?text=${encodeURIComponent(
     `Hello Vidya Education Group, I want course details for ${course}.`,
   )}`
+}
+
+export function offlineCoursePath(course) {
+  return `/coaching/offline/${course.slug}`
+}
+
+export function getOfflineCourseBySlug(slug) {
+  return OFFLINE_COURSES.find((course) => course.slug === slug)
 }
 
 export function getFacultyForCourse(course) {
