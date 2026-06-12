@@ -1,7 +1,7 @@
 import { MapPin, Phone, Mail, Clock, Navigation, MessageCircle } from 'lucide-react'
 import { PageHero, Reveal, SectionHeading } from '../components/ui.jsx'
 import LeadForm from '../components/LeadForm.jsx'
-import { BRAND } from '../data/site.js'
+import { BRAND, LIBRARY_ADDRESSES } from '../data/site.js'
 
 function isOpenNow() {
   const now = new Date()
@@ -45,6 +45,31 @@ export default function Contact() {
                 >
                   <Navigation className="h-4 w-4" /> Get Directions
                 </a>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.04}>
+              <div className="card p-6">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-slateblue">
+                    <MapPin className="h-5 w-5" />
+                  </span>
+                  <h3 className="font-display text-base font-bold text-navy">Library Addresses</h3>
+                </div>
+                <div className="mt-4 space-y-3">
+                  {LIBRARY_ADDRESSES.map((library) => (
+                    <a
+                      key={library.key}
+                      href={`https://maps.google.com/?q=${encodeURIComponent(library.address)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block rounded-xl bg-softgrey px-4 py-3 transition hover:bg-brand-50"
+                    >
+                      <span className="block text-sm font-bold text-navy">{library.label}</span>
+                      <span className="mt-1 block text-xs leading-relaxed text-slate-500">{library.address}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </Reveal>
 

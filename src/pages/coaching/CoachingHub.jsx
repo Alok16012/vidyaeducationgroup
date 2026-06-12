@@ -1,93 +1,189 @@
 import { Link } from 'react-router-dom'
 import {
-  TrainFront,
-  Wrench,
-  Cog,
-  Calculator,
-  Brain,
-  Trophy,
-  Monitor,
-  Building2,
-  Users,
   ArrowRight,
-  CheckCircle2,
-  BarChart3,
-  Layers,
+  BookOpen,
+  Building2,
+  ClipboardCheck,
+  ExternalLink,
+  MapPin,
+  MonitorPlay,
+  Navigation,
+  Smartphone,
+  Target,
+  Users,
 } from 'lucide-react'
-import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection, Pill, CheckList } from '../../components/ui.jsx'
-
-const BATCHES = [
-  {
-    icon: TrainFront,
-    title: 'Railway ALP Target Batch',
-    level: 'Basic → Advanced',
-    desc: 'Complete Assistant Loco Pilot preparation covering CBT-1, CBT-2 and CBAT with daily practice.',
-    points: ['Trade theory + practical', 'Speed maths drills', 'CBAT psycho training'],
-    accent: 'crimson',
-  },
-  {
-    icon: Wrench,
-    title: 'General Technical',
-    level: 'Trade focused',
-    desc: 'Technician & Technical posts with deep coverage of engineering trades and basic science.',
-    points: ['Engineering drawing', 'Trade-wise modules', 'Previous year analysis'],
-    accent: 'slateblue',
-  },
-  {
-    icon: Cog,
-    title: 'Non-Technical (NTPC)',
-    level: 'All graduates',
-    desc: 'GA, Maths & Reasoning intensive batch for NTPC, Group-D and allied non-technical posts.',
-    points: ['Current affairs', 'Reasoning mastery', 'Sectional mocks'],
-    accent: 'navy',
-  },
-]
+import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection, Pill } from '../../components/ui.jsx'
+import {
+  COACHING_ADDRESS,
+  COACHING_FEATURES,
+  ONLINE_APP_LINK,
+  ONLINE_FOUNDATION_COURSES,
+  OFFLINE_COURSES,
+  TARGET_COURSES,
+  TEST_SERIES,
+} from '../../data/coaching.js'
 
 export default function CoachingHub() {
   return (
     <>
       <PageHero
         eyebrow="Coaching Classes"
-        title="Railway & competitive coaching that scales with"
-        highlight="your level"
-        subtitle="Structured target batches for Railway ALP, General Technical and Non-Technical exams — taught from absolute basics to advanced, exam-cracking level."
+        title="Choose online app learning or"
+        highlight="offline classroom"
+        subtitle="Foundation courses, target batches, test series and offline classroom coaching with map, timing, fee, faculty and offer details."
         breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Coaching' }]}
       >
         <div className="flex flex-wrap gap-3">
-          <Link to="/coaching/offline" className="btn-crimson">
-            Join Offline Batch <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link to="/coaching/online" className="btn border border-white/30 bg-white/10 text-white hover:bg-white/20">
-            Explore Online Classes
+          <a href={ONLINE_APP_LINK.url} target="_blank" rel="noreferrer" className="btn-crimson">
+            <Smartphone className="h-4 w-4" /> Online App Link
+          </a>
+          <Link to="/coaching/offline" className="btn border border-white/30 bg-white/10 text-white hover:bg-white/20">
+            Offline Address & MAP <Navigation className="h-4 w-4" />
           </Link>
         </div>
       </PageHero>
 
-      {/* batches */}
       <section className="section">
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow="Our target batches"
-              title="Choose the batch built for your exam"
-              subtitle="Every batch is mapped to the latest exam pattern and runs in both morning and evening shifts."
+              eyebrow="Online / Offline"
+              title="Coaching options"
+              subtitle="Online courses are available through the app. Offline courses run at the Patna center with address and map support."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {BATCHES.map((b, i) => (
-              <Reveal key={b.title} delay={i * 0.1}>
-                <div className="card flex h-full flex-col p-6">
-                  <div className="flex items-center justify-between">
-                    <span className={`flex h-12 w-12 items-center justify-center rounded-xl ${b.accent === 'crimson' ? 'bg-crimson/10 text-crimson' : b.accent === 'slateblue' ? 'bg-brand-50 text-slateblue' : 'bg-navy/5 text-navy'}`}>
-                      <b.icon className="h-6 w-6" />
-                    </span>
-                    <Pill>{b.level}</Pill>
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            <Reveal>
+              <div className="card flex h-full flex-col p-6">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-slateblue">
+                  <Smartphone className="h-6 w-6" />
+                </span>
+                <h3 className="mt-5 font-display text-xl font-bold text-navy">Online - App Link</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                  Foundation courses, target courses and test series are available online through app access.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <Pill>Foundation</Pill>
+                  <Pill tone="crimson">Target</Pill>
+                  <Pill tone="green">Free Demo</Pill>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a href={ONLINE_APP_LINK.url} target="_blank" rel="noreferrer" className="btn-primary">
+                    App Link <ExternalLink className="h-4 w-4" />
+                  </a>
+                  <Link to="/coaching/online" className="btn-ghost">
+                    Course Details
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="card flex h-full flex-col p-6">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-crimson/10 text-crimson">
+                  <Building2 className="h-6 w-6" />
+                </span>
+                <h3 className="mt-5 font-display text-xl font-bold text-navy">Offline - Address & MAP</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{COACHING_ADDRESS.address}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <Pill>Courses</Pill>
+                  <Pill tone="crimson">Time</Pill>
+                  <Pill tone="green">Offer</Pill>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a href={COACHING_ADDRESS.mapUrl} target="_blank" rel="noreferrer" className="btn-primary">
+                    Open MAP <MapPin className="h-4 w-4" />
+                  </a>
+                  <Link to="/coaching/offline" className="btn-ghost">
+                    Offline Courses
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-softgrey">
+        <div className="container-page">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Online Courses"
+              title="Foundation and target catalog"
+              subtitle="Quick view of available online courses. Open online classes for course links and details."
+            />
+          </Reveal>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <Reveal>
+              <div className="card h-full p-6">
+                <h3 className="flex items-center gap-2 font-display text-lg font-bold text-navy">
+                  <BookOpen className="h-5 w-5 text-slateblue" /> Foundation
+                </h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {ONLINE_FOUNDATION_COURSES.slice(0, 9).map((course) => (
+                    <Pill key={course.title}>{course.title}</Pill>
+                  ))}
+                </div>
+                <Link to="/coaching/online#foundation-courses" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-slateblue hover:text-crimson">
+                  View all foundation courses <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <div className="card h-full p-6">
+                <h3 className="flex items-center gap-2 font-display text-lg font-bold text-navy">
+                  <Target className="h-5 w-5 text-crimson" /> Target
+                </h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {TARGET_COURSES.map((course) => (
+                    <Pill key={course} tone="crimson">{course}</Pill>
+                  ))}
+                </div>
+                <Link to="/coaching/online#target-courses" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-slateblue hover:text-crimson">
+                  Course Link & Details <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <div className="card h-full p-6">
+                <h3 className="flex items-center gap-2 font-display text-lg font-bold text-navy">
+                  <ClipboardCheck className="h-5 w-5 text-crimson" /> Test Series
+                </h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {TEST_SERIES.slice(0, 8).map((test) => (
+                    <Pill key={test} tone="green">{test}</Pill>
+                  ))}
+                </div>
+                <Link to="/coaching/online#test-series" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-slateblue hover:text-crimson">
+                  Free Demo <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-page">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Offline Courses"
+              title="Classroom course preview"
+              subtitle="Offline course details include time, duration, fee, offer, faculty name and experience."
+            />
+          </Reveal>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {OFFLINE_COURSES.map((course, i) => (
+              <Reveal key={course.course} delay={(i % 4) * 0.06}>
+                <div className="card flex h-full flex-col p-5">
+                  <p className="font-display text-base font-bold text-navy">{course.course}</p>
+                  <p className="mt-2 text-sm text-slate-600">{course.time} - {course.duration}</p>
+                  <div className="mt-4 flex items-end gap-2">
+                    <span className="text-sm text-slate-400 line-through">{course.fee}</span>
+                    <span className="font-display text-xl font-extrabold text-crimson">{course.offer}</span>
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-bold text-navy">{b.title}</h3>
-                  <p className="mt-2 text-sm text-slate-600">{b.desc}</p>
-                  <CheckList items={b.points} className="mt-4" />
-                  <Link to="/contact" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-slateblue hover:text-crimson">
-                    Enquire & enroll <ArrowRight className="h-4 w-4" />
+                  <Link to="/coaching/offline" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-slateblue hover:text-crimson">
+                    Course Detail <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </Reveal>
@@ -96,100 +192,20 @@ export default function CoachingHub() {
         </div>
       </section>
 
-      {/* level path */}
       <section className="section bg-softgrey">
         <div className="container-page">
           <Reveal>
-            <SectionHeading
-              eyebrow="From zero to selection"
-              title="A clear path from basic to high level"
-              subtitle="No student is left behind. We start with fundamentals and progressively build towards exam mastery."
-            />
+            <SectionHeading eyebrow="Features" title="Coaching features" />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-4">
-            {[
-              { step: '01', title: 'Foundation', desc: 'Core concepts, NCERT-level basics and confidence building.', icon: Layers },
-              { step: '02', title: 'Core Building', desc: 'Subject-wise depth, formulas, trades and reasoning patterns.', icon: Cog },
-              { step: '03', title: 'Practice', desc: 'Daily DPP, topic tests and sectional mocks with analysis.', icon: BarChart3 },
-              { step: '04', title: 'Exam Mastery', desc: 'Full-length mocks, speed-accuracy and final revision sprints.', icon: Trophy },
-            ].map((s, i) => (
-              <Reveal key={s.step} delay={i * 0.08}>
-                <div className="card relative h-full p-6">
-                  <span className="font-display text-4xl font-extrabold text-brand-100">{s.step}</span>
-                  <s.icon className="mt-2 h-7 w-7 text-crimson" />
-                  <h3 className="mt-3 font-display text-base font-bold text-navy">{s.title}</h3>
-                  <p className="mt-2 text-sm text-slate-600">{s.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* subjects */}
-      <section className="section">
-        <div className="container-page grid items-center gap-12 lg:grid-cols-2">
-          <Reveal>
-            <SectionHeading
-              align="left"
-              eyebrow="What you'll master"
-              title="Complete subject coverage"
-              subtitle="Our three flagship faculty cover every section that matters for Railway and competitive success."
-            />
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {[
-                { icon: Wrench, label: 'Science & Trade', who: 'Er. S.K Rajan' },
-                { icon: Calculator, label: 'Mathematics', who: 'Er. RD Yadav' },
-                { icon: Brain, label: 'Reasoning', who: 'Deepak Sir' },
-              ].map((s) => (
-                <div key={s.label} className="card p-5">
-                  <s.icon className="h-7 w-7 text-slateblue" />
-                  <p className="mt-3 font-display text-sm font-bold text-navy">{s.label}</p>
-                  <p className="text-xs text-slate-500">{s.who}</p>
-                </div>
-              ))}
-            </div>
-            <Link to="/coaching/faculty" className="btn-primary mt-8">
-              Meet the Faculty <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="grid gap-4">
-              {[
-                { icon: Monitor, title: 'Online Classes', desc: 'Live + recorded lectures and full test-series repository.', to: '/coaching/online' },
-                { icon: Building2, title: 'Offline Center', desc: 'Physical batches at Patna with morning & evening shifts.', to: '/coaching/offline' },
-                { icon: Users, title: 'Faculty Profiles', desc: 'Learn from experienced, result-oriented mentors.', to: '/coaching/faculty' },
-              ].map((c) => (
-                <Link key={c.to} to={c.to} className="card group flex items-center gap-4 p-5 transition hover:border-slateblue">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-gradient text-white">
-                    <c.icon className="h-6 w-6" />
-                  </span>
-                  <div className="flex-1">
-                    <p className="font-display text-base font-bold text-navy">{c.title}</p>
-                    <p className="text-sm text-slate-500">{c.desc}</p>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-slate-300 transition group-hover:translate-x-1 group-hover:text-crimson" />
-                </Link>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* features */}
-      <section className="section bg-softgrey">
-        <div className="container-page">
-          <Reveal>
-            <SectionHeading eyebrow="Included with every batch" title="More than just classes" />
-          </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: CheckCircle2, title: 'Daily Practice Problems', desc: 'Structured DPP sheets with detailed video solutions every single day.', accent: 'slateblue' },
-              { icon: BarChart3, title: 'Test Series & Analysis', desc: 'Topic, sectional and full-length mocks with rank and weakness reports.', accent: 'crimson' },
-              { icon: Brain, title: 'Doubt & Psycho Support', desc: 'Open doubt sessions plus exam-temperament coaching by Deepak Sir.', accent: 'navy' },
-            ].map((f, i) => (
-              <Reveal key={f.title} delay={i * 0.08}>
-                <FeatureCard {...f} />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {COACHING_FEATURES.map((feature, i) => (
+              <Reveal key={feature} delay={i * 0.08}>
+                <FeatureCard
+                  icon={i === 0 ? BookOpen : i === 1 ? Users : i === 2 ? ClipboardCheck : MonitorPlay}
+                  title={feature}
+                  desc="Available across coaching programs to support complete preparation."
+                  accent={i % 2 === 0 ? 'slateblue' : 'crimson'}
+                />
               </Reveal>
             ))}
           </div>
@@ -197,10 +213,10 @@ export default function CoachingHub() {
       </section>
 
       <CTASection
-        title="Your selection journey starts here"
-        subtitle="Enroll in a target batch today and get a free demo class plus a personalised study plan."
-        primary={{ label: 'Enroll Now', to: '/contact' }}
-        secondary={{ label: 'Visit Offline Center', to: '/coaching/offline' }}
+        title="Start with the right coaching mode"
+        subtitle="Use the app for online courses or visit the offline center for classroom batches and demo classes."
+        primary={{ label: 'Online Courses', to: '/coaching/online' }}
+        secondary={{ label: 'Offline Courses', to: '/coaching/offline' }}
       />
     </>
   )

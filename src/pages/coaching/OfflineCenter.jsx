@@ -1,156 +1,207 @@
 import { Link } from 'react-router-dom'
 import {
-  Sunrise,
-  Sunset,
-  MapPin,
-  Projector,
-  Armchair,
-  Wind,
-  ShieldCheck,
-  ClipboardList,
-  UserCheck,
-  CreditCard,
-  BadgeCheck,
   ArrowRight,
-  Building2,
+  BadgeCheck,
+  BookOpen,
+  ClipboardCheck,
+  ExternalLink,
+  MapPin,
+  MonitorPlay,
+  Navigation,
+  Projector,
+  ShieldCheck,
+  Users,
 } from 'lucide-react'
 import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection, Pill } from '../../components/ui.jsx'
-import { BRAND } from '../../data/site.js'
+import {
+  COACHING_ADDRESS,
+  COACHING_FEATURES,
+  OFFLINE_COURSES,
+  courseDetailsUrl,
+  getFacultyForCourse,
+} from '../../data/coaching.js'
+
+function initials(name) {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase()
+}
+
+function CourseTable() {
+  return (
+    <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
+      <div className="overflow-x-auto">
+        <table className="min-w-[980px] w-full text-left text-sm">
+          <thead className="bg-navy-gradient text-white">
+            <tr>
+              {['Course', 'Time', 'Duration', 'Fee', 'Offer', 'Faculty', 'Details'].map((head) => (
+                <th key={head} className="px-5 py-4 font-display text-xs font-bold uppercase tracking-wider">
+                  {head}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100">
+            {OFFLINE_COURSES.map((course) => {
+              const faculty = getFacultyForCourse(course)
+              const facultyName = faculty?.name || course.faculty
+              const exp = faculty?.exp || 'Experienced'
+              return (
+                <tr key={course.course} className="align-top transition hover:bg-softgrey">
+                  <td className="px-5 py-4">
+                    <p className="font-display font-bold text-navy">{course.course}</p>
+                  </td>
+                  <td className="px-5 py-4 font-semibold text-slate-600">{course.time}</td>
+                  <td className="px-5 py-4 text-slate-600">{course.duration}</td>
+                  <td className="px-5 py-4 text-slate-500 line-through">{course.fee}</td>
+                  <td className="px-5 py-4 font-display text-base font-extrabold text-crimson">{course.offer}</td>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 font-display text-sm font-extrabold text-slateblue">
+                        {faculty?.initials || initials(facultyName)}
+                      </span>
+                      <div>
+                        <p className="font-bold text-navy">{facultyName}</p>
+                        <p className="text-xs text-slate-500">{exp} experience</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-5 py-4">
+                    <a
+                      href={courseDetailsUrl(course.course)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-crimson px-3 py-2 text-xs font-bold text-white transition hover:bg-red-700"
+                    >
+                      Course Detail <ArrowRight className="h-3.5 w-3.5" />
+                    </a>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+}
 
 export default function OfflineCenter() {
   return (
     <>
       <PageHero
-        eyebrow="Coaching · Offline"
-        title="Classroom coaching at our"
+        eyebrow="Coaching Classes - Offline"
+        title="Offline courses at our"
         highlight="Patna center"
-        subtitle="A disciplined, distraction-free environment with experienced faculty, modern classrooms and flexible morning & evening batches."
+        subtitle="Classroom batches with course timing, duration, fee, offer, faculty detail and map support."
         breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Coaching', to: '/coaching' }, { label: 'Offline Center' }]}
       >
-        <div className="flex items-center gap-2 text-sm text-brand-100">
-          <MapPin className="h-5 w-5 text-crimson" /> {BRAND.address}
+        <div className="flex flex-wrap items-center gap-3 text-sm text-brand-100">
+          <span className="flex items-center gap-2"><MapPin className="h-5 w-5 text-crimson" /> {COACHING_ADDRESS.address}</span>
+          <a href={COACHING_ADDRESS.mapUrl} target="_blank" rel="noreferrer" className="btn border border-white/30 bg-white/10 text-white hover:bg-white/20">
+            <Navigation className="h-4 w-4" /> MAP
+          </a>
         </div>
       </PageHero>
 
-      {/* batches */}
       <section className="section">
+        <div className="container-page grid gap-8 lg:grid-cols-3">
+          <Reveal className="lg:col-span-1">
+            <div className="card h-full p-6">
+              <h3 className="flex items-center gap-2 font-display text-lg font-bold text-navy">
+                <MapPin className="h-5 w-5 text-crimson" /> Address & MAP
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">{COACHING_ADDRESS.address}</p>
+              <a href={COACHING_ADDRESS.mapUrl} target="_blank" rel="noreferrer" className="btn-primary mt-5">
+                Open MAP <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1} className="lg:col-span-2">
+            <div className="relative min-h-[280px] overflow-hidden rounded-3xl border border-slate-100 bg-softgrey shadow-card">
+              <div className="absolute inset-0 bg-hero-grid [background-size:24px_24px] opacity-60" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-crimson text-white shadow-premium">
+                  <MapPin className="h-8 w-8" />
+                </span>
+                <p className="mt-4 font-display text-lg font-bold text-navy">{COACHING_ADDRESS.label}</p>
+                <p className="mt-1 max-w-md text-sm text-slate-500">{COACHING_ADDRESS.address}</p>
+                <a href={COACHING_ADDRESS.mapUrl} target="_blank" rel="noreferrer" className="btn-crimson mt-5">
+                  <Navigation className="h-4 w-4" /> Get Directions
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section bg-softgrey">
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow="Flexible shifts"
-              title="Morning & evening batches"
-              subtitle="Pick the shift that fits your routine — both run the same complete syllabus with the same faculty."
+              eyebrow="Offline Courses"
+              title="Course, time, duration, fee and offer"
+              subtitle="Each course includes course detail, faculty name, profile-style pic and experience."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-12">
             <Reveal>
-              <div className="card overflow-hidden">
-                <div className="flex items-center gap-3 bg-gradient-to-br from-crimson to-red-700 p-6 text-white">
-                  <Sunrise className="h-9 w-9" />
-                  <div>
-                    <p className="font-display text-xl font-bold">Morning Batch</p>
-                    <p className="text-sm text-red-100">6:00 AM – 10:00 AM</p>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <ul className="space-y-3 text-sm text-slate-600">
-                    {['Ideal for college-going students', 'Fresh-mind concept sessions', 'Daily morning DPP practice', 'Library access after class'].map((x) => (
-                      <li key={x} className="flex items-center gap-2">
-                        <BadgeCheck className="h-4 w-4 text-crimson" /> {x}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="card overflow-hidden">
-                <div className="flex items-center gap-3 bg-navy-gradient p-6 text-white">
-                  <Sunset className="h-9 w-9" />
-                  <div>
-                    <p className="font-display text-xl font-bold">Evening Batch</p>
-                    <p className="text-sm text-brand-100">5:00 PM – 9:00 PM</p>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <ul className="space-y-3 text-sm text-slate-600">
-                    {['Perfect for working aspirants', 'Doubt-clearing focused sessions', 'Weekend full-length mocks', 'Extra classes for weak students'].map((x) => (
-                      <li key={x} className="flex items-center gap-2">
-                        <BadgeCheck className="h-4 w-4 text-slateblue" /> {x}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <CourseTable />
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* infrastructure */}
-      <section className="section bg-softgrey">
+      <section className="section">
         <div className="container-page">
           <Reveal>
-            <SectionHeading
-              eyebrow="Our campus"
-              title="Infrastructure built for focus"
-              subtitle="Everything in our Patna center is designed to keep you comfortable, attentive and safe."
-            />
+            <SectionHeading eyebrow="Features" title="Facilities included with coaching" />
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: Projector, title: 'Smart Classrooms', desc: 'Projector-enabled rooms with clear audio for concept-rich teaching.', accent: 'slateblue' },
-              { icon: Armchair, title: 'Comfortable Seating', desc: 'Spacious, ergonomic benches that keep you focused through long sessions.', accent: 'crimson' },
-              { icon: Wind, title: 'Air-Cooled Halls', desc: 'Well-ventilated, cool classrooms for a pleasant study atmosphere.', accent: 'navy' },
-              { icon: ShieldCheck, title: 'CCTV Secured', desc: 'Fully monitored, safe premises for students and parents’ peace of mind.', accent: 'slateblue' },
-              { icon: Building2, title: 'Central Location', desc: 'Easily reachable at Rampur Road, Near Sai Chowk, Patna.', accent: 'crimson' },
-              { icon: Armchair, title: 'Attached Library', desc: 'Direct access to our 24/7 premium and simple study wings.', accent: 'navy' },
-            ].map((f, i) => (
-              <Reveal key={f.title} delay={(i % 3) * 0.08}>
-                <FeatureCard {...f} />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {COACHING_FEATURES.map((feature, i) => (
+              <Reveal key={feature} delay={i * 0.08}>
+                <FeatureCard
+                  icon={i === 0 ? BookOpen : i === 1 ? Users : i === 2 ? ClipboardCheck : MonitorPlay}
+                  title={feature}
+                  desc="Built to support regular study, revision, doubt clearing and hybrid learning."
+                  accent={i % 2 === 0 ? 'slateblue' : 'crimson'}
+                />
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* enrollment process */}
-      <section className="section">
+      <section className="section bg-softgrey">
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow="Simple & transparent"
-              title="How to enroll in 4 steps"
-              subtitle="Joining a batch is quick and hassle-free — walk in or call us to begin."
+              eyebrow="Classroom Support"
+              title="Offline learning with hybrid backup"
+              subtitle="Students get classroom discipline plus online/offline continuity for stronger preparation."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: ClipboardList, title: 'Enquire', desc: 'Call us or fill the form to share your target exam and goals.' },
-              { icon: UserCheck, title: 'Counselling', desc: 'Get a free counselling session and a recommended batch.' },
-              { icon: CreditCard, title: 'Enroll', desc: 'Complete easy admission with affordable, transparent fees.' },
-              { icon: BadgeCheck, title: 'Start Learning', desc: 'Begin classes, receive material and your study schedule.' },
-            ].map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.08}>
-                <div className="card relative h-full p-6 text-center">
-                  <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-navy-gradient text-white">
-                    <s.icon className="h-6 w-6" />
-                  </span>
-                  <span className="mt-4 block font-display text-xs font-bold uppercase tracking-wider text-crimson">
-                    Step {i + 1}
-                  </span>
-                  <h3 className="mt-1 font-display text-base font-bold text-navy">{s.title}</h3>
-                  <p className="mt-2 text-sm text-slate-600">{s.desc}</p>
-                </div>
+              { icon: Projector, title: 'Hybrid Class Room', desc: 'Online and offline class support for flexible learning.', accent: 'slateblue' },
+              { icon: ShieldCheck, title: 'Special Doubt Facilities', desc: 'Dedicated doubt support to keep every student moving.', accent: 'crimson' },
+              { icon: BadgeCheck, title: 'Updated Study Material', desc: 'Course material aligned with current exam patterns.', accent: 'navy' },
+            ].map((item, i) => (
+              <Reveal key={item.title} delay={i * 0.08}>
+                <FeatureCard {...item} />
               </Reveal>
             ))}
           </div>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link to="/contact" className="btn-crimson">
-              Book a Campus Visit <ArrowRight className="h-4 w-4" />
+              Reserve a Demo Seat <ArrowRight className="h-4 w-4" />
             </Link>
             <Link to="/coaching/faculty" className="btn-ghost">
-              Meet the Faculty
+              Faculty Profiles
             </Link>
           </div>
         </div>
@@ -158,7 +209,7 @@ export default function OfflineCenter() {
 
       <CTASection
         title="Experience a free demo class"
-        subtitle="Sit in a real session at our Patna center and feel the teaching quality before you enroll."
+        subtitle="Visit the center, check the course table and choose the batch that fits your timing."
         primary={{ label: 'Reserve a Demo Seat', to: '/contact' }}
         secondary={{ label: 'View Online Option', to: '/coaching/online' }}
       />

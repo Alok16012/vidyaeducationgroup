@@ -21,13 +21,37 @@ import {
   Headphones,
   Sparkles,
   CheckCircle2,
+  MapPin,
+  Navigation,
 } from 'lucide-react'
 import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection } from '../../components/ui.jsx'
+import { LIBRARY_ADDRESSES } from '../../data/site.js'
+import { LIBRARY_FEATURES } from '../../data/libraryFeatures.js'
+import BookingSummary from './BookingSummary.jsx'
+
+const PRICE_OPTIONS = [
+  {
+    name: 'Single Shift',
+    price: 'A/C price list',
+    points: ['Morning / Noon / Evening / Night shift', 'Hall-wise seat allotment', 'Online booking support'],
+  },
+  {
+    name: 'Two Shifts',
+    price: 'A/C price list',
+    popular: true,
+    points: ['Extended study hours', 'Same library preference', 'Priority seat confirmation'],
+  },
+  {
+    name: 'Bed Shift',
+    price: 'A/C price list',
+    points: ['Bed shift option', 'Limited bed seats: 08', 'Comfort-focused long study support'],
+  },
+]
 
 const TIERS = {
   toppers: {
-    label: 'Toppers Library',
-    eyebrow: 'Library · Toppers',
+    label: "Topper's Library",
+    eyebrow: "Library · Topper's",
     title: 'Focused, affordable study for every',
     highlight: 'serious aspirant',
     subtitle:
@@ -57,7 +81,7 @@ const TIERS = {
   },
 
   digital: {
-    label: 'Toppers Digital Library',
+    label: "Topper's Digital Library",
     eyebrow: 'Library · Digital',
     title: 'Smart, tech-powered study with',
     highlight: 'everything online',
@@ -88,7 +112,7 @@ const TIERS = {
   },
 
   premium: {
-    label: 'Toppers Premium Library',
+    label: "Topper's Premium Library",
     eyebrow: 'Library · Premium',
     title: 'Executive study, designed like a',
     highlight: 'luxury workspace',
@@ -119,7 +143,7 @@ const TIERS = {
   },
 
   luxury: {
-    label: 'Toppers Luxury Library',
+    label: "Topper's Luxury Library",
     eyebrow: 'Library · Luxury',
     title: 'The most premium study experience in',
     highlight: 'all of Patna',
@@ -152,6 +176,8 @@ const TIERS = {
 
 export default function LibraryWing({ tier }) {
   const t = TIERS[tier]
+  const libraryInfo = LIBRARY_ADDRESSES.find((item) => item.key === tier)
+  const libraryLabel = libraryInfo?.label || t.label
   const BadgeIcon = t.badgeIcon
 
   return (
@@ -161,7 +187,7 @@ export default function LibraryWing({ tier }) {
         title={t.title}
         highlight={t.highlight}
         subtitle={t.subtitle}
-        breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Library', to: '/library' }, { label: t.label }]}
+        breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Library', to: '/library' }, { label: libraryLabel }]}
       >
         <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold text-brand-100 ring-1 ring-white/20">
           <BadgeIcon className="h-4 w-4 text-crimson" /> {t.badge}
@@ -173,13 +199,13 @@ export default function LibraryWing({ tier }) {
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow={t.label}
-              title="Everything you need to study at your best"
-              subtitle="Every detail is engineered for long, focused and comfortable study sessions."
+              eyebrow="Library Features"
+              title="Facilities built for serious study"
+              subtitle="Comfort, security and focus-friendly facilities across our library spaces."
             />
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {t.features.map((f, i) => (
+            {LIBRARY_FEATURES.map((f, i) => (
               <Reveal key={f.title} delay={(i % 3) * 0.08}>
                 <FeatureCard {...f} />
               </Reveal>
@@ -188,18 +214,20 @@ export default function LibraryWing({ tier }) {
         </div>
       </section>
 
+      <BookingSummary selectedKey={tier} />
+
       {/* plans */}
       <section className="section bg-softgrey">
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow="Membership plans"
-              title="Transparent plans for every commitment"
-              subtitle="No hidden charges. Longer plans unlock the best value and perks."
+              eyebrow="Price List"
+              title="A/C pricing by shift"
+              subtitle="Choose single shift, two shifts or bed shift. Final rates are confirmed from the current A/C price list."
             />
           </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {t.plans.map((p, i) => (
+            {PRICE_OPTIONS.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.1}>
                 <div className={`card relative flex h-full flex-col p-6 ${p.popular ? 'ring-2 ring-crimson' : ''}`}>
                   {p.popular && (
@@ -208,10 +236,7 @@ export default function LibraryWing({ tier }) {
                     </span>
                   )}
                   <p className="font-display text-lg font-bold text-navy">{p.name}</p>
-                  <div className="mt-3 flex items-end gap-1">
-                    <span className="font-display text-4xl font-extrabold text-navy">{p.price}</span>
-                    <span className="pb-1 text-sm text-slate-500">{p.per}</span>
-                  </div>
+                  <p className="mt-3 rounded-xl bg-softgrey px-4 py-3 text-sm font-bold text-slateblue">{p.price}</p>
                   <ul className="mt-6 flex-1 space-y-3">
                     {p.points.map((pt) => (
                       <li key={pt} className="flex items-start gap-2 text-sm text-slate-600">
@@ -227,8 +252,35 @@ export default function LibraryWing({ tier }) {
             ))}
           </div>
           <p className="mt-6 text-center text-xs text-slate-400">
-            * Indicative pricing — please contact us for current offers and student discounts.
+            * Please contact the office for the latest A/C price list before confirming payment.
           </p>
+        </div>
+      </section>
+
+      {/* address */}
+      <section className="section pb-4 pt-0">
+        <div className="container-page">
+          <Reveal>
+            <div className="flex flex-col gap-5 rounded-3xl border border-slate-100 bg-white p-6 shadow-card sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-crimson/10 text-crimson">
+                  <MapPin className="h-6 w-6" />
+                </span>
+                <div>
+                  <p className="font-display text-lg font-bold text-navy">{libraryLabel} Address</p>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">{libraryInfo?.address}</p>
+                </div>
+              </div>
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(libraryInfo?.address || libraryLabel)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-ghost shrink-0"
+              >
+                <Navigation className="h-4 w-4" /> Get Directions
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -236,9 +288,9 @@ export default function LibraryWing({ tier }) {
       <section className="section pb-4 pt-0">
         <div className="container-page">
           <div className="grid grid-cols-2 gap-4 rounded-3xl bg-navy-gradient p-6 text-white sm:grid-cols-4">
-            {t.amenities.map((x) => (
-              <div key={x.label} className="flex items-center gap-2 text-sm font-medium">
-                <x.icon className="h-5 w-5 text-crimson" /> {x.label}
+            {LIBRARY_FEATURES.slice(0, 4).map((x) => (
+              <div key={x.title} className="flex items-center gap-2 text-sm font-medium">
+                <x.icon className="h-5 w-5 text-crimson" /> {x.title}
               </div>
             ))}
           </div>
@@ -246,7 +298,7 @@ export default function LibraryWing({ tier }) {
       </section>
 
       <CTASection
-        title={`Reserve your seat in the ${t.label}`}
+        title={`Reserve your seat in the ${libraryLabel}`}
         subtitle="Seats are limited and fill up fast. Secure yours today and study in the environment you deserve."
         primary={{ label: 'Book a Seat', to: '/contact' }}
         secondary={{ label: 'Explore Library Hub', to: '/library' }}

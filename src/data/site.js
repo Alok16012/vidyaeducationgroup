@@ -16,6 +16,33 @@ export const BRAND = {
   director: 'Mr. Chandan Kumar',
 }
 
+export const LIBRARY_ADDRESSES = [
+  {
+    key: 'toppers',
+    label: "Topper's Library",
+    to: '/library/toppers',
+    address: 'Ramkrishna Colony, Back of Kela Mandi, Bazar Samiti, Patna',
+  },
+  {
+    key: 'digital',
+    label: "Topper's Digital Library",
+    to: '/library/digital',
+    address: 'Rampur Road, Near Lakshmi Market, Bazar Samiti, Patna',
+  },
+  {
+    key: 'premium',
+    label: "Topper's Premium Library",
+    to: '/library/premium',
+    address: 'Rampur Road, Near Vidya Education Group, Bazar Samiti, Patna',
+  },
+  {
+    key: 'luxury',
+    label: "Topper's Luxury Library",
+    to: '/library/luxury',
+    address: 'Rampur Road, Near Kesar Sweets, Bazar Samiti, Patna',
+  },
+]
+
 export const NAV = [
   { label: 'Home', to: '/' },
   {
@@ -30,10 +57,10 @@ export const NAV = [
     label: 'Library',
     to: '/library',
     children: [
-      { label: 'Toppers Library', to: '/library/toppers', desc: 'Affordable focused study hall' },
-      { label: 'Toppers Digital Library', to: '/library/digital', desc: 'Tablets, e-books & online tests' },
-      { label: 'Toppers Premium Library', to: '/library/premium', desc: 'Ergonomic AC cabins' },
-      { label: 'Toppers Luxury Library', to: '/library/luxury', desc: 'Five-star private cabins' },
+      { label: "Topper's Library", to: '/library/toppers', desc: 'Affordable focused study hall' },
+      { label: "Topper's Digital Library", to: '/library/digital', desc: 'Tablets, e-books & online tests' },
+      { label: "Topper's Premium Library", to: '/library/premium', desc: 'Ergonomic AC cabins' },
+      { label: "Topper's Luxury Library", to: '/library/luxury', desc: 'Five-star private cabins' },
     ],
   },
   {
