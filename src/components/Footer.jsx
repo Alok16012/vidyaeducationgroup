@@ -4,9 +4,10 @@ import Logo from './Logo.jsx'
 import { BRAND, NAV } from '../data/site.js'
 
 export default function Footer() {
-  const coaching = NAV.find((n) => n.label === 'Coaching')
   const library = NAV.find((n) => n.label === 'Library')
-  const consultancy = NAV.find((n) => n.label === 'Consultancy')
+  const coaching = NAV.find((n) => n.label === 'Coaching Centres')
+  const tiffin = NAV.find((n) => n.label === 'Tiffin Services')
+  const counselling = NAV.find((n) => n.label === 'Counselling Hub')
 
   return (
     <footer className="bg-navy text-slate-300">
@@ -32,10 +33,11 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-5">
-            <FooterCol title="Coaching" links={coaching.children} />
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-5">
             <FooterCol title="Library" links={library.children} />
-            <FooterCol title="Consultancy" links={consultancy.children} />
+            <FooterCol title="Coaching Centres" links={coaching.children} />
+            <FooterCol title="Tiffin Services" links={tiffin.children} />
+            <FooterCol title="Counselling Hub" links={counselling.children} />
           </div>
 
           <div className="lg:col-span-3">

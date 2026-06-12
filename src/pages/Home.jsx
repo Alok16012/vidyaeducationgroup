@@ -23,14 +23,6 @@ import { BRAND, STATS, NOTIFICATIONS } from '../data/site.js'
 
 const ROUTES = [
   {
-    title: 'Coaching Classes',
-    desc: 'Railway ALP, Technical & Non-Technical target batches from basic to advanced level.',
-    icon: GraduationCap,
-    to: '/coaching',
-    accent: 'from-slateblue to-brand-700',
-    points: ['Live + Recorded', 'Test Series', 'Doubt Support'],
-  },
-  {
     title: 'Premium Library',
     desc: '24/7 peaceful study zone with executive ergonomic cabins and high-speed Wi-Fi.',
     icon: BookOpenCheck,
@@ -39,20 +31,28 @@ const ROUTES = [
     points: ['24/7 Access', 'Plug Points', 'Seat Booking'],
   },
   {
-    title: 'Career Counselling',
-    desc: 'Expert admission guidance for Tech, Management, Law, Medical & Nursing careers.',
-    icon: Compass,
-    to: '/consultancy',
-    accent: 'from-navy to-slateblue',
-    points: ['Profile Tracking', 'Top Colleges', 'End-to-end'],
+    title: 'Coaching Centres',
+    desc: 'Online and offline coaching for foundation, target batches and test series.',
+    icon: GraduationCap,
+    to: '/coaching',
+    accent: 'from-slateblue to-brand-700',
+    points: ['Online App', 'Offline Centre', 'Test Series'],
   },
   {
-    title: 'Tiffin Service',
+    title: 'Tiffin Services',
     desc: 'Healthy & tasty home-style tiffin (mess) delivered fresh to your library cabin or hostel.',
     icon: Utensils,
     to: '/tiffin',
     accent: 'from-emerald-500 to-emerald-700',
     points: ['Pure Veg', 'Fresh Daily', 'Free Delivery'],
+  },
+  {
+    title: 'Counselling Hub',
+    desc: 'Expert counselling and admission guidance for Tech, Management, Law, Medical & Nursing careers.',
+    icon: Compass,
+    to: '/consultancy',
+    accent: 'from-navy to-slateblue',
+    points: ['Profile Tracking', 'Top Colleges', 'End-to-end'],
   },
 ]
 
@@ -288,10 +288,10 @@ function Stats() {
 
 function WhyUs() {
   const feats = [
-    { icon: TrendingUp, title: 'Coaching Classes', desc: 'Result-driven online & offline batches for Railway ALP, Technical and competitive exams — basics to advanced.', accent: 'slateblue' },
     { icon: Wifi, title: 'Premium 24/7 Library', desc: 'Ergonomic cabins, fiber Wi-Fi, plug points and tablet access across premium and simple study wings.', accent: 'crimson' },
-    { icon: Compass, title: 'Career Counselling', desc: 'End-to-end admission guidance across Tech, Management, Law, Medical & Nursing careers.', accent: 'navy' },
-    { icon: Utensils, title: 'Tiffin Service (Mess)', desc: 'Healthy & tasty home-style pure-veg meals, cooked fresh daily and delivered to your cabin or hostel.', accent: 'slateblue' },
+    { icon: TrendingUp, title: 'Coaching Centres', desc: 'Result-driven online & offline batches for foundation, target and competitive exam preparation.', accent: 'slateblue' },
+    { icon: Utensils, title: 'Tiffin Services', desc: 'Healthy & tasty home-style pure-veg meals, cooked fresh daily and delivered to your cabin or hostel.', accent: 'slateblue' },
+    { icon: Compass, title: 'Counselling Hub', desc: 'End-to-end admission guidance across Tech, Management, Law, Medical & Nursing careers.', accent: 'navy' },
     { icon: Users, title: 'Special Care for Weak Students', desc: 'Director Mr. Chandan Kumar personally ensures कमजोर विद्यार्थी get extra mentoring and remedial classes.', accent: 'crimson' },
     { icon: ShieldCheck, title: 'Trusted & Affordable', desc: 'Premium facilities at the most student-friendly fees in Patna — value without compromise.', accent: 'navy' },
   ]

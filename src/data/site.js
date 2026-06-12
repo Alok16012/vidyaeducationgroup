@@ -46,14 +46,6 @@ export const LIBRARY_ADDRESSES = [
 export const NAV = [
   { label: 'Home', to: '/' },
   {
-    label: 'Coaching',
-    to: '/coaching',
-    children: [
-      { label: 'Online Classes', to: '/coaching/online', desc: 'Live + recorded lectures' },
-      { label: 'Offline Center', to: '/coaching/offline', desc: 'Patna physical batches' },
-    ],
-  },
-  {
     label: 'Library',
     to: '/library',
     children: [
@@ -64,23 +56,30 @@ export const NAV = [
     ],
   },
   {
-    label: 'Consultancy',
+    label: 'Coaching Centres',
+    to: '/coaching',
+    children: [
+      { label: 'Online Classes', to: '/coaching/online', desc: 'Live + recorded lectures' },
+      { label: 'Offline Center', to: '/coaching/offline', desc: 'Patna physical batches' },
+    ],
+  },
+  {
+    label: 'Tiffin Services',
+    to: '/tiffin',
+    children: [
+      { label: 'Tiffin Services', to: '/tiffin', desc: 'Healthy & tasty home-style meals' },
+      { label: 'Hostel', to: '/hostel', desc: 'Safe, comfortable student accommodation' },
+    ],
+  },
+  {
+    label: 'Counselling Hub',
     to: '/consultancy',
     children: [
       { label: 'Counselling', to: '/consultancy', desc: 'Career path & profile counselling' },
       { label: 'Admission', to: '/consultancy/admission', desc: 'Tech, Management, Law, Medical & Nursing' },
     ],
   },
-  {
-    label: 'Hostel & Tiffin',
-    to: '/tiffin',
-    children: [
-      { label: 'Hostel', to: '/hostel', desc: 'Safe, comfortable student accommodation' },
-      { label: 'Tiffin Services', to: '/tiffin', desc: 'Healthy & tasty home-style meals' },
-    ],
-  },
   { label: 'About', to: '/about' },
-  { label: 'Dashboard', to: '/dashboard' },
   { label: 'Contact', to: '/contact' },
 ]
 
