@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import {
   Utensils,
   ChefHat,
@@ -9,182 +8,199 @@ import {
   Salad,
   ShieldCheck,
   CheckCircle2,
-  Sparkles,
-  Coffee,
   CookingPot,
+  Phone,
+  MapPin,
+  MessageCircle,
+  ClipboardList,
 } from 'lucide-react'
-import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection } from '../components/ui.jsx'
+import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection, Pill } from '../components/ui.jsx'
+import { BRAND } from '../data/site.js'
 
-const PLANS = [
+const TIFFIN_PHONE = '9934299198'
+const TIFFIN_PHONE_DISPLAY = '+91 99342 99198'
+const TIFFIN_ADDRESS = BRAND.address
+
+const RATES = [
   {
-    name: 'Lunch Only',
-    price: '₹1,800',
-    per: '/month',
-    points: ['1 meal a day (lunch)', 'Roti, rice, dal, sabzi', 'Hygienic home-style cooking', 'Pickup from center'],
+    name: 'Veg Monthly Tiffin',
+    price: '₹2,200',
+    tone: 'bg-emerald-50 text-emerald-700',
+    points: ['Fresh vegetarian meals', 'Student-friendly monthly plan', 'Dish choice available'],
   },
   {
-    name: 'Lunch + Dinner',
-    price: '₹3,200',
-    per: '/month',
-    popular: true,
-    points: ['2 meals a day', 'Full thali both times', 'Free delivery to library/hostel', 'Weekly special menu', 'Sunday special'],
-  },
-  {
-    name: 'Full Day',
-    price: '₹4,200',
-    per: '/month',
-    points: ['Breakfast + lunch + dinner', 'Morning tea & snacks', 'Priority delivery', 'Custom diet on request'],
+    name: 'Non-Veg Monthly Tiffin',
+    price: '₹2,400',
+    tone: 'bg-crimson/10 text-crimson',
+    points: ['Veg meals with non-veg option', 'Monthly subscription', 'Dish choice available'],
   },
 ]
 
-const MENU = [
-  { day: 'Monday', lunch: 'Rajma, Rice, Roti, Salad', dinner: 'Aloo-Gobhi, Dal, Roti' },
-  { day: 'Tuesday', lunch: 'Chole, Jeera Rice, Roti', dinner: 'Mix Veg, Dal, Roti' },
-  { day: 'Wednesday', lunch: 'Kadhi Pakora, Rice, Roti', dinner: 'Paneer, Dal, Roti' },
-  { day: 'Thursday', lunch: 'Dal Makhani, Rice, Roti', dinner: 'Bhindi, Dal, Roti' },
-  { day: 'Friday', lunch: 'Matar-Paneer, Rice, Roti', dinner: 'Aloo-Soyabean, Dal, Roti' },
-  { day: 'Saturday', lunch: 'Sambar, Rice, Roti', dinner: 'Seasonal Veg, Dal, Roti' },
-  { day: 'Sunday', lunch: 'Special Thali + Sweet', dinner: 'Pulao / Khichdi + Raita' },
+const DISH_CHOICES = [
+  'Roti',
+  'Rice',
+  'Dal',
+  'Seasonal Sabzi',
+  'Paneer / Special Veg',
+  'Egg / Chicken option',
+  'Salad',
+  'Pickle',
 ]
 
 export default function TiffinService() {
   return (
     <>
       <PageHero
-        eyebrow="Tiffin Service · Mess"
-        title="Ghar jaisa khana, taaki padhai par rahe"
-        highlight="poora focus"
-        subtitle="Hygienic, home-style tiffin and mess service for students — fresh, nutritious meals delivered to your library cabin or hostel, so you never lose study time worrying about food."
-        breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Tiffin Service' }]}
+        eyebrow="Tiffin Services"
+        title="Fresh student meals with"
+        highlight="your dish choice"
+        subtitle="A simple monthly tiffin service for students. Choose dishes according to your taste, select veg or non-veg, and get hygienic home-style food at a student-friendly rate."
+        breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Tiffin Services' }]}
       >
-        <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold text-brand-100 ring-1 ring-white/20">
-          <Utensils className="h-4 w-4 text-crimson" /> Pure veg · fresh daily · student-friendly pricing
-        </span>
+        <div className="flex flex-wrap gap-3">
+          <a href={`tel:+91${TIFFIN_PHONE}`} className="btn-crimson">
+            <Phone className="h-4 w-4" /> {TIFFIN_PHONE_DISPLAY}
+          </a>
+          <Pill tone="green">Veg ₹2,200/month</Pill>
+          <Pill tone="crimson">Non-Veg ₹2,400/month</Pill>
+        </div>
       </PageHero>
 
-      {/* features */}
       <section className="section">
-        <div className="container-page">
+        <div className="container-page grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
-            <SectionHeading
-              eyebrow="Why our tiffin"
-              title="Food that feels like home"
-              subtitle="Every meal is cooked fresh in a clean kitchen with quality ingredients — balanced, tasty and easy on a student's budget."
-            />
+            <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card">
+              <SectionHeading
+                align="left"
+                eyebrow="Monthly Rates"
+                title="Clear pricing, simple subscription"
+                subtitle="Choose the plan that matches your food preference. Students can discuss dish choices before starting."
+              />
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                {RATES.map((rate) => (
+                  <div key={rate.name} className="rounded-3xl border border-slate-100 p-5">
+                    <span className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${rate.tone}`}>
+                      Monthly
+                    </span>
+                    <h3 className="mt-4 font-display text-lg font-bold text-navy">{rate.name}</h3>
+                    <p className="mt-3 font-display text-5xl font-extrabold text-navy">{rate.price}</p>
+                    <p className="mt-1 text-sm text-slate-500">per month</p>
+                    <ul className="mt-5 space-y-3">
+                      {rate.points.map((point) => (
+                        <li key={point} className="flex items-start gap-2 text-sm font-medium text-slate-600">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" /> {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: ChefHat, title: 'Home-Style Cooking', desc: 'Simple, comforting ghar-jaisa khana cooked daily by experienced cooks.', accent: 'crimson' },
-              { icon: Leaf, title: 'Pure Veg & Fresh', desc: '100% vegetarian meals prepared fresh every day — never reheated or stored.', accent: 'slateblue' },
-              { icon: ShieldCheck, title: 'Hygienic Kitchen', desc: 'Clean, FSSAI-conscious kitchen with strict hygiene and quality checks.', accent: 'navy' },
-              { icon: Truck, title: 'Free Delivery', desc: 'Hot tiffin delivered right to your library cabin, hostel or PG on time.', accent: 'crimson' },
-              { icon: Salad, title: 'Balanced Nutrition', desc: 'Dal, sabzi, roti, rice and salad — a balanced thali to keep you energized.', accent: 'slateblue' },
-              { icon: Soup, title: 'Weekly Variety', desc: 'A rotating weekly menu so you never get bored of the same food.', accent: 'navy' },
-            ].map((f, i) => (
-              <Reveal key={f.title} delay={(i % 3) * 0.08}>
-                <FeatureCard {...f} />
-              </Reveal>
-            ))}
-          </div>
+
+          <Reveal delay={0.1}>
+            <div className="h-full rounded-3xl bg-navy-gradient p-6 text-white shadow-premium">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15">
+                <ClipboardList className="h-6 w-6" />
+              </span>
+              <h2 className="mt-5 font-display text-2xl font-bold">Choose dishes your way</h2>
+              <p className="mt-3 text-sm leading-relaxed text-brand-100">
+                Students can choose dishes according to their taste and routine. Share your preference
+                for veg or non-veg meals, and we will guide you with available daily options.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {DISH_CHOICES.map((dish) => (
+                  <span key={dish} className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white ring-1 ring-white/10">
+                    {dish}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={`https://wa.me/91${TIFFIN_PHONE}?text=${encodeURIComponent('Hello, I want to start tiffin service and choose my dishes.')}`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-crimson mt-8 w-full"
+              >
+                <MessageCircle className="h-4 w-4" /> Discuss Dish Choice
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* weekly menu */}
       <section className="section bg-softgrey">
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow="This week's menu"
-              title="A sample weekly meal plan"
-              subtitle="Here's a taste of what's on the table. Festive days and Sundays get a special thali with sweets."
+              eyebrow="Service Features"
+              title="Made for students"
+              subtitle="Clean, regular and flexible meals for students who want dependable food during study hours."
             />
           </Reveal>
-          <Reveal delay={0.1}>
-            <div className="mt-12 overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
-              <div className="grid grid-cols-12 bg-navy px-6 py-4 text-xs font-bold uppercase tracking-wider text-white">
-                <div className="col-span-3 sm:col-span-2">Day</div>
-                <div className="col-span-5 sm:col-span-5">Lunch</div>
-                <div className="col-span-4 sm:col-span-5">Dinner</div>
-              </div>
-              {MENU.map((m, i) => (
-                <div
-                  key={m.day}
-                  className={`grid grid-cols-12 items-center px-6 py-4 text-sm ${
-                    i % 2 ? 'bg-softgrey/50' : 'bg-white'
-                  } ${m.day === 'Sunday' ? 'bg-crimson/5' : ''}`}
-                >
-                  <div className="col-span-3 flex items-center gap-2 font-semibold text-navy sm:col-span-2">
-                    {m.day === 'Sunday' && <Sparkles className="h-4 w-4 text-crimson" />}
-                    {m.day}
-                  </div>
-                  <div className="col-span-5 text-slate-600 sm:col-span-5">{m.lunch}</div>
-                  <div className="col-span-4 text-slate-600 sm:col-span-5">{m.dinner}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-          <p className="mt-6 text-center text-xs text-slate-400">
-            * Menu may vary slightly based on seasonal vegetables and availability.
-          </p>
-        </div>
-      </section>
-
-      {/* plans */}
-      <section className="section">
-        <div className="container-page">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Monthly plans"
-              title="Simple plans, no hidden charges"
-              subtitle="Pick a plan that fits your routine and budget. Pause or upgrade anytime — just give us a day's notice."
-            />
-          </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {PLANS.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.1}>
-                <div className={`card relative flex h-full flex-col p-6 ${p.popular ? 'ring-2 ring-crimson' : ''}`}>
-                  {p.popular && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-crimson px-4 py-1 text-xs font-bold text-white">
-                      Most Popular
-                    </span>
-                  )}
-                  <p className="font-display text-lg font-bold text-navy">{p.name}</p>
-                  <div className="mt-3 flex items-end gap-1">
-                    <span className="font-display text-4xl font-extrabold text-navy">{p.price}</span>
-                    <span className="pb-1 text-sm text-slate-500">{p.per}</span>
-                  </div>
-                  <ul className="mt-6 flex-1 space-y-3">
-                    {p.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-2 text-sm text-slate-600">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" /> {pt}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="/contact" className={`mt-6 ${p.popular ? 'btn-crimson' : 'btn-ghost'} w-full`}>
-                    Choose {p.name}
-                  </Link>
-                </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { icon: ChefHat, title: 'Home-Style Cooking', desc: 'Simple, fresh and comforting meals prepared for everyday student routines.', accent: 'crimson' },
+              { icon: Leaf, title: 'Veg & Non-Veg Options', desc: 'Choose a vegetarian or non-vegetarian monthly plan according to your preference.', accent: 'slateblue' },
+              { icon: ShieldCheck, title: 'Hygienic Preparation', desc: 'Food is prepared with cleanliness, quality ingredients and regular kitchen care.', accent: 'navy' },
+              { icon: Salad, title: 'Dish Choice Available', desc: 'Students can choose dishes as per taste and available daily options.', accent: 'slateblue' },
+              { icon: Truck, title: 'Student-Friendly Service', desc: 'Designed for students staying near coaching, library, PG or hostel areas.', accent: 'crimson' },
+              { icon: Soup, title: 'Balanced Meal Style', desc: 'Meals can include roti, rice, dal, sabzi, salad and special options.', accent: 'navy' },
+            ].map((feature, i) => (
+              <Reveal key={feature.title} delay={(i % 3) * 0.08}>
+                <FeatureCard {...feature} />
               </Reveal>
             ))}
           </div>
-          <p className="mt-6 text-center text-xs text-slate-400">
-            * Indicative pricing — please contact us for current offers and student discounts.
-          </p>
         </div>
       </section>
 
-      {/* amenities strip */}
+      <section className="section">
+        <div className="container-page grid gap-6 lg:grid-cols-3">
+          <Reveal className="lg:col-span-2">
+            <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card">
+              <h2 className="font-display text-2xl font-bold text-navy">Address</h2>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">{TIFFIN_ADDRESS}</p>
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(TIFFIN_ADDRESS)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-primary mt-5"
+              >
+                <MapPin className="h-4 w-4" /> Open in Google Maps
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card">
+              <h2 className="font-display text-2xl font-bold text-navy">Contact</h2>
+              <a href={`tel:+91${TIFFIN_PHONE}`} className="mt-5 flex items-center gap-3 rounded-2xl bg-softgrey p-4 font-display text-xl font-bold text-slateblue">
+                <Phone className="h-5 w-5 text-crimson" /> {TIFFIN_PHONE_DISPLAY}
+              </a>
+              <a
+                href={`https://wa.me/91${TIFFIN_PHONE}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 flex items-center gap-3 rounded-2xl bg-emerald-50 p-4 text-sm font-bold text-emerald-700"
+              >
+                <MessageCircle className="h-5 w-5" /> Chat on WhatsApp
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="pb-4">
         <div className="container-page">
           <div className="grid grid-cols-2 gap-4 rounded-3xl bg-navy-gradient p-6 text-white sm:grid-cols-4">
             {[
-              { icon: Clock, label: 'On-time delivery' },
-              { icon: CookingPot, label: 'Cooked fresh daily' },
-              { icon: Coffee, label: 'Morning tea option' },
+              { icon: Clock, label: 'Regular service' },
+              { icon: CookingPot, label: 'Cooked fresh' },
+              { icon: Utensils, label: 'Dish choice' },
               { icon: ShieldCheck, label: 'Hygiene assured' },
-            ].map((x) => (
-              <div key={x.label} className="flex items-center gap-2 text-sm font-medium">
-                <x.icon className="h-5 w-5 text-crimson" /> {x.label}
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-2 text-sm font-medium">
+                <item.icon className="h-5 w-5 text-crimson" /> {item.label}
               </div>
             ))}
           </div>
@@ -192,10 +208,10 @@ export default function TiffinService() {
       </section>
 
       <CTASection
-        title="Bhookh mitao, padhai par dhyan lagao"
-        subtitle="Subscribe to our student tiffin service today and get fresh, home-style meals delivered without breaking your study routine."
-        primary={{ label: 'Start Tiffin Subscription', to: '/contact' }}
-        secondary={{ label: 'Talk to Us', to: '/contact' }}
+        title="Start your student tiffin subscription"
+        subtitle="Call or WhatsApp us to choose veg or non-veg, share your dish preference and confirm your monthly service."
+        primary={{ label: 'Call Tiffin Service', to: '/contact' }}
+        secondary={{ label: 'Contact Us', to: '/contact' }}
       />
     </>
   )

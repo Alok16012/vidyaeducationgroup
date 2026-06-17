@@ -36,7 +36,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-5">
             <FooterCol title="Library" links={library.children} />
             <FooterCol title="Coaching Centres" links={coaching.children} />
-            <FooterCol title="Tiffin Services" links={tiffin.children} />
+            <FooterCol title="Tiffin Services" links={[tiffin]} />
             <FooterCol title="Counselling Hub" links={counselling.children} />
           </div>
 

@@ -66,10 +66,6 @@ export const NAV = [
   {
     label: 'Tiffin Services',
     to: '/tiffin',
-    children: [
-      { label: 'Tiffin Services', to: '/tiffin', desc: 'Healthy & tasty home-style meals' },
-      { label: 'Hostel', to: '/hostel', desc: 'Safe, comfortable student accommodation' },
-    ],
   },
   {
     label: 'Counselling Hub',
