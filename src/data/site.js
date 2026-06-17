@@ -70,10 +70,6 @@ export const NAV = [
   {
     label: 'Counselling Hub',
     to: '/consultancy',
-    children: [
-      { label: 'Counselling', to: '/consultancy', desc: 'Career path & profile counselling' },
-      { label: 'Admission', to: '/consultancy/admission', desc: 'Tech, Management, Law, Medical & Nursing' },
-    ],
   },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },

@@ -37,7 +37,7 @@ export default function Footer() {
             <FooterCol title="Library" links={library.children} />
             <FooterCol title="Coaching Centres" links={coaching.children} />
             <FooterCol title="Tiffin Services" links={[tiffin]} />
-            <FooterCol title="Counselling Hub" links={counselling.children} />
+            <FooterCol title="Counselling Hub" links={[counselling]} />
           </div>
 
           <div className="lg:col-span-3">
