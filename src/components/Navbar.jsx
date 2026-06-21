@@ -60,7 +60,8 @@ export default function Navbar() {
       {/* main bar */}
       <div className="container-page flex h-16 items-center justify-between lg:h-20">
         <Link to="/" aria-label="Home">
-          <Logo />
+          <Logo className="hidden lg:flex" />
+          <MobileLogo className="lg:hidden" />
         </Link>
 
         {/* desktop nav */}
@@ -127,8 +128,8 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Link to="/contact" className="btn-crimson !px-5 !py-2.5 text-sm">
-            Enroll Now
+          <Link to="/contact" className="enroll-cta btn-crimson !px-5 !py-2.5 text-sm">
+            <span className="relative z-[2]">Enroll Now</span>
           </Link>
         </div>
 
@@ -162,7 +163,7 @@ export default function Navbar() {
             >
               <div className="shrink-0 bg-white">
                 <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-                  <Logo />
+                  <MobileLogo />
                   <button
                     onClick={() => setOpen(false)}
                     className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200"
@@ -231,8 +232,10 @@ export default function Navbar() {
               </div>
 
               <div className="shrink-0 border-t border-slate-100 bg-white p-4">
-                <Link to="/contact" className="btn-crimson w-full">
-                  Enroll Now <ArrowRight className="h-4 w-4" />
+                <Link to="/contact" className="enroll-cta btn-crimson w-full">
+                  <span className="relative z-[2] flex items-center gap-2">
+                    Enroll Now <ArrowRight className="h-4 w-4" />
+                  </span>
                 </Link>
                 <div className="mt-3 flex flex-col gap-1.5">
                   {BRAND.phones.map((p, i) => (
@@ -251,5 +254,15 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
+  )
+}
+
+function MobileLogo({ className = '' }) {
+  return (
+    <img
+      src="/images/vidya-mobile-logo.png"
+      alt="New Vidya Education Group, Director Mr. Chandan Kumar"
+      className={`h-[52px] w-auto max-w-[225px] object-contain ${className}`}
+    />
   )
 }

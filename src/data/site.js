@@ -1,9 +1,9 @@
 export const BRAND = {
   name: 'Vidya Educational Services',
   shortName: 'Vidya Education Group',
-  tagline: 'Right Guidance, Bright Future',
-  taglineHi: 'सही मार्गदर्शन, उज्ज्वल भविष्य',
-  address: 'Rampur Road, Near Sai Chowk, Patna, Bihar',
+  tagline: 'Coaching, Library, Tiffin and Career Support in One Place',
+  taglineHi: 'कोचिंग, लाइब्रेरी, टिफिन और करियर सहायता एक ही स्थान पर',
+  address: 'Head Office: Rampur Road, Near Sai Chowk, Patna, Bihar',
   phones: ['+91 95044 46940', '+91 93049 54942'],
   phonesRaw: ['+919504446940', '+919304954942'],
   email: 'info@vidyaeducationalservices.in',
@@ -68,7 +68,7 @@ export const NAV = [
     to: '/tiffin',
   },
   {
-    label: 'Counselling Hub',
+    label: 'Consultancy',
     to: '/consultancy',
   },
   { label: 'About', to: '/about' },

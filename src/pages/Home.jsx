@@ -11,15 +11,13 @@ import {
   Clock,
   Users,
   Sparkles,
-  Wifi,
-  TrendingUp,
   Phone,
   Quote,
   Utensils,
 } from 'lucide-react'
-import { Reveal, SectionHeading, StatCounter, FeatureCard, CTASection, Pill } from '../components/ui.jsx'
+import { Reveal, SectionHeading, StatCounter, CTASection, Pill } from '../components/ui.jsx'
 import LeadForm from '../components/LeadForm.jsx'
-import { BRAND, STATS, NOTIFICATIONS } from '../data/site.js'
+import { BRAND, STATS } from '../data/site.js'
 
 const ROUTES = [
   {
@@ -47,12 +45,47 @@ const ROUTES = [
     points: ['Pure Veg', 'Fresh Daily', 'Free Delivery'],
   },
   {
-    title: 'Counselling Hub',
+    title: 'Consultancy',
     desc: 'Expert counselling and admission guidance for Tech, Management, Law, Medical & Nursing careers.',
     icon: Compass,
     to: '/consultancy',
     accent: 'from-navy to-slateblue',
     points: ['Profile Tracking', 'Top Colleges', 'End-to-end'],
+  },
+]
+
+const SERVICE_NOTICES = [
+  {
+    service: 'Coaching',
+    badge: 'New Batch',
+    to: '/coaching/offline',
+    tone: 'crimson',
+    title: 'New Foundation Batch starts 2 July 2026',
+    details: 'SSC · Banking · Railway · BPSC · Bihar Daroga | Maths · General Science · Current Affairs · G.K. / G.S.',
+  },
+  {
+    service: 'Library',
+    badge: 'Offer',
+    to: '/library',
+    tone: 'slateblue',
+    title: '₹50 Discount on Any Shift',
+    details: 'Choose your preferred library and study shift. Limited-period admission offer.',
+  },
+  {
+    service: 'Tiffin Services',
+    badge: 'Meal Offer',
+    to: '/tiffin',
+    tone: 'emerald',
+    title: 'Monthly Plan with Free Delivery',
+    details: 'Choose your dishes · Fresh home-style meals · Veg ₹2,200 · Non-Veg ₹2,400',
+  },
+  {
+    service: 'Consultancy',
+    badge: 'Admission Open',
+    to: '/consultancy',
+    tone: 'navy',
+    title: 'Notice 2026–2027',
+    details: 'Nursing · Paramedical · B.Ed. · Management · Engineering · B.Sc. · B.Pharma Courses',
   },
 ]
 
@@ -63,12 +96,11 @@ export default function Home() {
       <Ticker />
       <Routes3 />
       <Stats />
-      <WhyUs />
       <Testimonials />
       <LeadSection />
       <CTASection
-        title="Right Guidance today, a Bright Future tomorrow"
-        subtitle="Join thousands of students from Patna who chose Vidya Educational Services to power their journey."
+        title="Coaching, Library, Tiffin and Career Support in One Place"
+        subtitle="A complete support system for students in Patna, from focused study and expert teaching to healthy meals and admission guidance."
         primary={{ label: 'Book Free Counselling', to: '/contact' }}
         secondary={{ label: 'Explore Coaching', to: '/coaching' }}
       />
@@ -93,40 +125,18 @@ function Hero() {
             <Sparkles className="h-3.5 w-3.5 text-crimson" /> {BRAND.tagline}
           </motion.span>
 
-          <motion.h1
+          <motion.figure
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
-            className="mt-5 font-display text-[28px] font-extrabold leading-[1.15] break-words sm:text-5xl lg:text-6xl"
+            className="mt-5 overflow-hidden rounded-3xl border border-white/20 bg-white/10 shadow-premium"
           >
-            Bihar's Trusted &{' '}
-            <span className="relative inline-block whitespace-nowrap text-crimson">
-              Affordable
-              <svg
-                className="absolute -bottom-2 left-0 w-full"
-                viewBox="0 0 300 12"
-                fill="none"
-              >
-                <path
-                  d="M2 9C60 3 240 3 298 9"
-                  stroke="#DC2626"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </span>{' '}
-            Education Hub in Patna
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.12 }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-brand-100 sm:text-lg"
-          >
-            Coaching, a premium 24/7 library, and professional career counselling and{' '}
-            <span className="font-semibold text-white">tiffin services (healthy and tasty)</span>.
-          </motion.p>
+            <img
+              src="/images/student-services-hero.png"
+              alt="Students using Vidya's coaching, library, tiffin and consultancy services"
+              className="aspect-[8/5] w-full object-cover"
+            />
+          </motion.figure>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -167,21 +177,27 @@ function Hero() {
           transition={{ delay: 0.2 }}
           className="relative min-w-0"
         >
-          <div className="rounded-3xl bg-white/10 p-2 ring-1 ring-white/20 backdrop-blur">
+          <div className="service-path-panel rounded-3xl bg-white/10 p-2 ring-1 ring-white/20 backdrop-blur">
             <div className="rounded-[20px] bg-white p-5 shadow-premium">
               <div className="flex items-center justify-between">
-                <p className="font-display text-sm font-bold text-navy">Choose your path</p>
-                <Pill tone="crimson">4 Services</Pill>
+                <p className="flex items-center gap-2 font-display text-sm font-bold text-navy">
+                  <span className="service-path-dot h-2.5 w-2.5 rounded-full bg-crimson" />
+                  Choose your path
+                </p>
+                <span className="service-count rounded-full bg-crimson/10 px-3 py-1 text-xs font-bold text-crimson">
+                  4 Services
+                </span>
               </div>
               <div className="mt-4 space-y-3">
-                {ROUTES.map((r) => (
+                {ROUTES.map((r, index) => (
                   <Link
                     key={r.to}
                     to={r.to}
-                    className="group flex items-center gap-4 rounded-2xl border border-slate-100 bg-softgrey/60 p-4 transition hover:border-slateblue hover:bg-white hover:shadow-card"
+                    style={{ '--service-delay': `${index * 1.4}s` }}
+                    className="service-path-card group flex items-center gap-4 rounded-2xl border border-slate-100 bg-softgrey/60 p-4 transition hover:-translate-y-1 hover:border-slateblue hover:bg-white hover:shadow-card"
                   >
                     <span
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${r.accent} text-white`}
+                      className={`service-path-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${r.accent} text-white`}
                     >
                       <r.icon className="h-6 w-6" />
                     </span>
@@ -191,7 +207,9 @@ function Hero() {
                       </span>
                       <span className="block truncate text-xs text-slate-500">{r.desc}</span>
                     </span>
-                    <ArrowRight className="h-5 w-5 shrink-0 text-slate-300 transition group-hover:translate-x-1 group-hover:text-crimson" />
+                    <span className="service-path-arrow flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-slate-300 shadow-sm transition group-hover:bg-crimson group-hover:text-white">
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -210,30 +228,72 @@ function Hero() {
 }
 
 function Ticker() {
-  const items = [...NOTIFICATIONS, ...NOTIFICATIONS]
+  const tones = {
+    crimson: 'border-crimson/20 bg-crimson/5 text-crimson',
+    slateblue: 'border-slateblue/20 bg-brand-50 text-slateblue',
+    emerald: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+    navy: 'border-navy/20 bg-slate-100 text-navy',
+  }
+  const badges = {
+    crimson: 'bg-crimson',
+    slateblue: 'bg-slateblue',
+    emerald: 'bg-emerald-600',
+    navy: 'bg-navy',
+  }
+
   return (
-    <div className="border-y border-slate-200 bg-white">
-      <div className="container-page flex items-center gap-4 py-3">
-        <span className="flex shrink-0 items-center gap-2 rounded-full bg-crimson px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white">
-          <Megaphone className="h-3.5 w-3.5" /> Notice
-        </span>
-        <div className="relative flex-1 overflow-hidden">
-          <div className="flex w-max animate-marquee gap-10 whitespace-nowrap">
-            {items.map((n, i) => (
-              <span key={i} className="flex items-center gap-2 text-sm font-medium text-slate-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-crimson" /> {n}
-              </span>
-            ))}
-          </div>
+    <section className="border-y border-slate-200 bg-white py-5" aria-label="Latest notices and offers">
+      <div className="container-page">
+        <div className="mb-4 flex items-center gap-2">
+          <Megaphone className="h-5 w-5 text-crimson" />
+          <h2 className="font-display text-sm font-extrabold uppercase text-navy">
+            Latest Notices & Offers
+          </h2>
+        </div>
+
+        <div className="space-y-3">
+          {SERVICE_NOTICES.map((notice) => (
+            <div
+              key={notice.service}
+              className={`grid min-h-[76px] grid-cols-[118px_minmax(0,1fr)] overflow-hidden rounded-xl border sm:grid-cols-[190px_minmax(0,1fr)] ${tones[notice.tone]}`}
+            >
+              <Link
+                to={notice.to}
+                className="relative z-10 flex flex-col justify-center border-r border-current/15 bg-inherit px-3 sm:px-4"
+              >
+                <span className="text-xs font-extrabold uppercase sm:text-sm">{notice.service}</span>
+                <span className={`notice-blink mt-1 w-fit rounded-full px-2 py-0.5 text-[9px] font-extrabold uppercase text-white sm:text-[10px] ${badges[notice.tone]}`}>
+                  {notice.badge}
+                </span>
+              </Link>
+
+              <div className="notice-marquee flex min-w-0 items-center overflow-hidden">
+                <div className="notice-marquee-track flex w-max items-center">
+                  {[0, 1].map((copy) => (
+                    <Link
+                      key={copy}
+                      to={notice.to}
+                      className="flex shrink-0 items-center gap-4 whitespace-nowrap px-6"
+                      aria-hidden={copy === 1}
+                    >
+                      <span className="text-sm font-extrabold text-navy">{notice.title}</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-current" />
+                      <span className="text-xs font-medium text-slate-600 sm:text-sm">{notice.details}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
 function Routes3() {
   return (
-    <section className="section">
+    <section className="section hidden md:block">
       <div className="container-page">
         <Reveal>
           <SectionHeading
@@ -286,45 +346,38 @@ function Stats() {
   )
 }
 
-function WhyUs() {
-  const feats = [
-    { icon: Wifi, title: 'Premium 24/7 Library', desc: 'Ergonomic cabins, fiber Wi-Fi, plug points and tablet access across premium and simple study wings.', accent: 'crimson' },
-    { icon: TrendingUp, title: 'Coaching Centres', desc: 'Result-driven online & offline batches for foundation, target and competitive exam preparation.', accent: 'slateblue' },
-    { icon: Utensils, title: 'Tiffin Services', desc: 'Healthy & tasty home-style pure-veg meals, cooked fresh daily and delivered to your cabin or hostel.', accent: 'slateblue' },
-    { icon: Compass, title: 'Counselling Hub', desc: 'End-to-end admission guidance across Tech, Management, Law, Medical & Nursing careers.', accent: 'navy' },
-    { icon: Users, title: 'Special Care for Weak Students', desc: 'Director Mr. Chandan Kumar personally ensures कमजोर विद्यार्थी get extra mentoring and remedial classes.', accent: 'crimson' },
-    { icon: ShieldCheck, title: 'Trusted & Affordable', desc: 'Premium facilities at the most student-friendly fees in Patna — value without compromise.', accent: 'navy' },
-  ]
-  return (
-    <section className="section bg-softgrey">
-      <div className="container-page">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Why Vidya Education Group"
-            title="Built around the student, not the syllabus"
-            subtitle="A rare combination of disciplined coaching, premium infrastructure and genuine personal care."
-          />
-        </Reveal>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {feats.map((f, i) => (
-            <Reveal key={f.title} delay={(i % 3) * 0.08}>
-              <FeatureCard {...f} />
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function Testimonials() {
   const data = [
     { name: 'Amit Raj', tag: 'Railway ALP, Selected', text: 'The technical faculty and daily test series gave me real exam confidence. The 24/7 library was my second home.' },
     { name: 'Priya Sharma', tag: 'B.Tech Admission', text: 'Their consultancy team mapped my whole roadmap and got me into a top engineering college. Truly right guidance.' },
     { name: 'Sonu Kumar', tag: 'Non-Technical Batch', text: 'Deepak Sir’s reasoning tricks and motivation completely changed my preparation. Affordable and world-class.' },
+    { name: 'Neha Kumari', tag: 'SSC Foundation', text: 'The structured classes and regular practice sets helped me improve my speed and accuracy every week.' },
+    { name: 'Rahul Kumar', tag: 'Premium Library', text: 'The peaceful environment, personal locker and 24/7 access made it much easier to maintain a serious study routine.' },
+    { name: 'Anjali Singh', tag: 'Banking Foundation', text: 'Faculty members explain every topic patiently, and the doubt support keeps the preparation clear and focused.' },
+    { name: 'Rohit Raj', tag: 'Bihar Daroga Batch', text: 'The syllabus plan, mock tests and consistent guidance gave my preparation the direction it was missing.' },
+    { name: 'Sakshi Verma', tag: 'Career Consultancy', text: 'I received clear information about courses, colleges and admission options without any confusion or pressure.' },
+    { name: 'Aditya Anand', tag: 'Digital Library', text: 'Fast Wi-Fi, comfortable seating and a disciplined atmosphere make this a dependable place for long study hours.' },
+    { name: 'Pooja Kumari', tag: 'Online Course', text: 'Recorded lessons and test practice let me study around my schedule while still staying connected with the faculty.' },
   ]
+
+  const ReviewCard = ({ review }) => (
+    <blockquote className="card flex min-h-[260px] w-[300px] shrink-0 flex-col p-6 sm:w-[350px]">
+      <Quote className="h-8 w-8 text-crimson/30" />
+      <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">“{review.text}”</p>
+      <footer className="mt-5 flex items-center gap-3 border-t border-slate-100 pt-5">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-50 font-display font-bold text-slateblue">
+          {review.name[0]}
+        </span>
+        <div>
+          <p className="text-sm font-bold text-navy">{review.name}</p>
+          <p className="text-xs text-crimson">{review.tag}</p>
+        </div>
+      </footer>
+    </blockquote>
+  )
+
   return (
-    <section className="section">
+    <section className="section overflow-hidden">
       <div className="container-page">
         <Reveal>
           <SectionHeading
@@ -333,24 +386,16 @@ function Testimonials() {
             subtitle="Real results from students who trusted Vidya Education Group with their future."
           />
         </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {data.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.1}>
-              <div className="card flex h-full flex-col p-6">
-                <Quote className="h-8 w-8 text-crimson/30" />
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">“{t.text}”</p>
-                <div className="mt-5 flex items-center gap-3 border-t border-slate-100 pt-5">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-50 font-display font-bold text-slateblue">
-                    {t.name[0]}
-                  </span>
-                  <div>
-                    <p className="text-sm font-bold text-navy">{t.name}</p>
-                    <p className="text-xs text-crimson">{t.tag}</p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+      </div>
+
+      <div className="review-marquee mt-12">
+        <div className="review-marquee-track flex w-max">
+          <div className="flex gap-6 pr-6">
+            {data.map((review) => <ReviewCard key={review.name} review={review} />)}
+          </div>
+          <div className="flex gap-6 pr-6" aria-hidden="true">
+            {data.map((review) => <ReviewCard key={`duplicate-${review.name}`} review={review} />)}
+          </div>
         </div>
       </div>
     </section>

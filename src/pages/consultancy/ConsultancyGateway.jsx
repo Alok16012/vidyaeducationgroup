@@ -112,7 +112,7 @@ export default function ConsultancyGateway() {
     if (Object.keys(nextErrors).length) return
 
     const lines = [
-      'Counselling Hub Enquiry',
+      'Consultancy Enquiry',
       `Courses: ${form.courseGroup} - ${form.course}`,
       `Course Mode: ${form.courseMode}`,
       `Selected Option: ${form.serviceType}`,
@@ -142,7 +142,7 @@ export default function ConsultancyGateway() {
         <div className="container-page grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
             <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card">
-              <p className="eyebrow">Counselling Hub</p>
+              <p className="eyebrow">Consultancy</p>
               <h1 className="heading-lg mt-3">Start with a quick form</h1>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Click below to open the enquiry form. Student details come first, then course, mode,
@@ -200,7 +200,7 @@ export default function ConsultancyGateway() {
               </button>
 
               <div className="mb-6 pr-12">
-                <p className="eyebrow">Counselling Hub</p>
+                <p className="eyebrow">Consultancy</p>
                 <h2 className="mt-3 font-display text-2xl font-bold text-navy sm:text-3xl">Counselling / Admission Form</h2>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
                   Fill student details first. Submit will open WhatsApp on {BRAND.phones[0]}.

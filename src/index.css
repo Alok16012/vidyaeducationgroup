@@ -92,3 +92,213 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.service-path-panel {
+  animation: service-panel-glow 4s ease-in-out infinite;
+}
+
+.service-path-card {
+  animation: service-card-highlight 5.6s ease-in-out infinite;
+  animation-delay: var(--service-delay);
+}
+
+.service-path-icon {
+  animation: service-icon-float 2.8s ease-in-out infinite;
+  animation-delay: var(--service-delay);
+}
+
+.service-path-arrow {
+  animation: service-arrow-nudge 2s ease-in-out infinite;
+  animation-delay: var(--service-delay);
+}
+
+.service-path-dot,
+.service-count {
+  animation: service-pulse 1.8s ease-in-out infinite;
+}
+
+.enroll-cta {
+  position: relative;
+  overflow: hidden;
+  animation: enroll-pulse 2.4s ease-in-out infinite;
+}
+
+.enroll-cta::after {
+  position: absolute;
+  inset: -40% auto -40% -45%;
+  z-index: 1;
+  width: 32%;
+  content: '';
+  background: rgb(255 255 255 / 0.3);
+  pointer-events: none;
+  transform: skewX(-20deg);
+  animation: enroll-shine 2.8s ease-in-out infinite;
+}
+
+@keyframes enroll-pulse {
+  0%,
+  100% {
+    box-shadow: 0 10px 30px -12px rgb(220 38 38 / 0.55);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 15px 34px -10px rgb(220 38 38 / 0.8);
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes enroll-shine {
+  0%,
+  30% {
+    left: -45%;
+  }
+  65%,
+  100% {
+    left: 125%;
+  }
+}
+
+@keyframes service-card-highlight {
+  0%,
+  18%,
+  100% {
+    border-color: rgb(241 245 249);
+    background-color: rgb(248 250 252 / 0.6);
+    box-shadow: none;
+  }
+  8% {
+    border-color: rgb(220 38 38 / 0.45);
+    background-color: rgb(255 255 255);
+    box-shadow: 0 12px 28px -18px rgb(220 38 38 / 0.65);
+  }
+}
+
+@keyframes service-icon-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes service-arrow-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes service-panel-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(255 255 255 / 0);
+  }
+  50% {
+    box-shadow: 0 0 30px -12px rgb(255 255 255 / 0.35);
+  }
+}
+
+@keyframes service-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.58;
+  }
+}
+
+.review-marquee {
+  overflow: hidden;
+  padding-block: 8px 24px;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.review-marquee-track {
+  animation: marquee 60s linear infinite;
+}
+
+.review-marquee:hover .review-marquee-track {
+  animation-play-state: paused;
+}
+
+.notice-marquee {
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.notice-marquee-track {
+  animation: notice-scroll 24s linear infinite;
+  will-change: transform;
+}
+
+.notice-marquee:hover .notice-marquee-track {
+  animation-play-state: paused;
+}
+
+.notice-blink {
+  animation: notice-blink 1.15s ease-in-out infinite;
+}
+
+@keyframes notice-blink {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes notice-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes review-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.review-marquee-track {
+  animation-name: review-scroll;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-marquee,
+  .notice-marquee {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .review-marquee-track,
+  .notice-marquee-track,
+  .notice-blink,
+  .service-path-panel,
+  .service-path-card,
+  .service-path-icon,
+  .service-path-arrow,
+  .service-path-dot,
+  .service-count,
+  .enroll-cta,
+  .enroll-cta::after {
+    animation: none;
+  }
+}

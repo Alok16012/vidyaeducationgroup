@@ -7,7 +7,7 @@ export default function Footer() {
   const library = NAV.find((n) => n.label === 'Library')
   const coaching = NAV.find((n) => n.label === 'Coaching Centres')
   const tiffin = NAV.find((n) => n.label === 'Tiffin Services')
-  const counselling = NAV.find((n) => n.label === 'Counselling Hub')
+  const counselling = NAV.find((n) => n.label === 'Consultancy')
 
   return (
     <footer className="bg-navy text-slate-300">
@@ -37,7 +37,7 @@ export default function Footer() {
             <FooterCol title="Library" links={library.children} />
             <FooterCol title="Coaching Centres" links={coaching.children} />
             <FooterCol title="Tiffin Services" links={[tiffin]} />
-            <FooterCol title="Counselling Hub" links={[counselling]} />
+            <FooterCol title="Consultancy" links={[counselling]} />
           </div>
 
           <div className="lg:col-span-3">
