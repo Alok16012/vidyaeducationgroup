@@ -126,7 +126,8 @@ function Hero() {
           >
             <Sparkles className="h-3.5 w-3.5 shrink-0 text-crimson" />
             <span className="sm:hidden">
-              अब आपकी हर शैक्षणिक जरूरत का एक ही समाधान — VIDYA EDUCATION GROUP!
+              अब आपकी हर शैक्षणिक जरूरत का एक ही समाधान —{' '}
+              <span className="whitespace-nowrap">VIDYA EDUCATION GROUP!</span>
             </span>
             <span className="hidden sm:inline">{BRAND.tagline}</span>
           </motion.span>
@@ -345,7 +346,7 @@ function Stats() {
   return (
     <section className="relative overflow-hidden bg-navy-gradient py-16 text-white">
       <div className="absolute inset-0 bg-hero-grid [background-size:22px_22px] opacity-30" />
-      <div className="container-page relative grid grid-cols-2 gap-8 lg:grid-cols-4">
+      <div className="container-page relative grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-8 lg:grid-cols-4">
         {STATS.map((s, index) => (
           <StatCounter key={s.label} {...s} icon={icons[index]} light />
         ))}
@@ -356,21 +357,31 @@ function Stats() {
 
 function Testimonials() {
   const data = [
-    { name: 'Amit Raj', tag: 'Railway ALP, Selected', text: 'The technical faculty and daily test series gave me real exam confidence. The 24/7 library was my second home.' },
-    { name: 'Priya Sharma', tag: 'B.Tech Admission', text: 'Their consultancy team mapped my whole roadmap and got me into a top engineering college. Truly right guidance.' },
-    { name: 'Sonu Kumar', tag: 'Non-Technical Batch', text: 'Deepak Sir’s reasoning tricks and motivation completely changed my preparation. Affordable and world-class.' },
-    { name: 'Neha Kumari', tag: 'SSC Foundation', text: 'The structured classes and regular practice sets helped me improve my speed and accuracy every week.' },
-    { name: 'Rahul Kumar', tag: 'Premium Library', text: 'The peaceful environment, personal locker and 24/7 access made it much easier to maintain a serious study routine.' },
-    { name: 'Anjali Singh', tag: 'Banking Foundation', text: 'Faculty members explain every topic patiently, and the doubt support keeps the preparation clear and focused.' },
-    { name: 'Rohit Raj', tag: 'Bihar Daroga Batch', text: 'The syllabus plan, mock tests and consistent guidance gave my preparation the direction it was missing.' },
-    { name: 'Sakshi Verma', tag: 'Career Consultancy', text: 'I received clear information about courses, colleges and admission options without any confusion or pressure.' },
-    { name: 'Aditya Anand', tag: 'Digital Library', text: 'Fast Wi-Fi, comfortable seating and a disciplined atmosphere make this a dependable place for long study hours.' },
-    { name: 'Pooja Kumari', tag: 'Online Course', text: 'Recorded lessons and test practice let me study around my schedule while still staying connected with the faculty.' },
+    { name: 'Amit Raj', tag: 'Railway ALP, Selected', rating: 4.9, text: 'The technical faculty and daily test series gave me real exam confidence. The 24/7 library was my second home.' },
+    { name: 'Priya Sharma', tag: 'B.Tech Admission', rating: 4.8, text: 'Their consultancy team mapped my whole roadmap and got me into a top engineering college. Truly right guidance.' },
+    { name: 'Sonu Kumar', tag: 'Non-Technical Batch', rating: 5, text: 'Deepak Sir’s reasoning tricks and motivation completely changed my preparation. Affordable and world-class.' },
+    { name: 'Neha Kumari', tag: 'SSC Foundation', rating: 4.8, text: 'The structured classes and regular practice sets helped me improve my speed and accuracy every week.' },
+    { name: 'Rahul Kumar', tag: 'Premium Library', rating: 4.9, text: 'The peaceful environment, personal locker and 24/7 access made it much easier to maintain a serious study routine.' },
+    { name: 'Anjali Singh', tag: 'Banking Foundation', rating: 4.7, text: 'Faculty members explain every topic patiently, and the doubt support keeps the preparation clear and focused.' },
+    { name: 'Rohit Raj', tag: 'Bihar Daroga Batch', rating: 4.8, text: 'The syllabus plan, mock tests and consistent guidance gave my preparation the direction it was missing.' },
+    { name: 'Sakshi Verma', tag: 'Career Consultancy', rating: 4.9, text: 'I received clear information about courses, colleges and admission options without any confusion or pressure.' },
+    { name: 'Aditya Anand', tag: 'Digital Library', rating: 4.8, text: 'Fast Wi-Fi, comfortable seating and a disciplined atmosphere make this a dependable place for long study hours.' },
+    { name: 'Pooja Kumari', tag: 'Online Course', rating: 4.7, text: 'Recorded lessons and test practice let me study around my schedule while still staying connected with the faculty.' },
   ]
 
   const ReviewCard = ({ review }) => (
     <blockquote className="card flex min-h-[260px] w-[300px] shrink-0 flex-col p-6 sm:w-[350px]">
-      <Quote className="h-8 w-8 text-crimson/30" />
+      <div className="flex items-center justify-between gap-3">
+        <Quote className="h-8 w-8 text-crimson/30" />
+        <div className="flex items-center gap-1">
+          <div className="flex" aria-label={`${review.rating} out of 5 stars`}>
+            {[0, 1, 2, 3, 4].map((star) => (
+              <Star key={star} className="h-4 w-4 fill-amber-400 text-amber-400" />
+            ))}
+          </div>
+          <span className="ml-1 text-xs font-bold text-navy">{review.rating.toFixed(1)}</span>
+        </div>
+      </div>
       <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">“{review.text}”</p>
       <footer className="mt-5 flex items-center gap-3 border-t border-slate-100 pt-5">
         <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-50 font-display font-bold text-slateblue">
@@ -393,6 +404,21 @@ function Testimonials() {
             title="Stories of right guidance"
             subtitle="Real results from students who trusted Vidya Education Group with their future."
           />
+        </Reveal>
+        <Reveal delay={0.08}>
+          <div className="mx-auto mt-7 flex w-fit items-center gap-4 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-3 shadow-card">
+            <div className="flex" aria-label="Overall rating 4.8 out of 5 stars">
+              {[0, 1, 2, 3, 4].map((star) => (
+                <Star key={star} className="h-5 w-5 fill-amber-400 text-amber-400" />
+              ))}
+            </div>
+            <div className="border-l border-amber-200 pl-4">
+              <p className="font-display text-lg font-extrabold text-navy">
+                4.8 <span className="text-sm text-slate-500">out of 5</span>
+              </p>
+              <p className="text-xs font-semibold text-amber-700">Overall student rating</p>
+            </div>
+          </div>
         </Reveal>
       </div>
 

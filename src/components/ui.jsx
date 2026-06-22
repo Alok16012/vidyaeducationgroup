@@ -59,19 +59,19 @@ export function StatCounter({ value, suffix = '', label, light = false, icon: Ic
   }, [inView, value])
 
   return (
-    <div ref={ref} className="text-center">
-      <div className="flex items-center justify-center gap-3">
+    <div ref={ref} className="flex min-w-0 flex-col items-center text-center">
+      <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
         {Icon && (
-          <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border sm:h-12 sm:w-12 ${
+          <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border sm:h-12 sm:w-12 ${
             light
               ? 'border-white/20 bg-white/10 text-crimson'
               : 'border-crimson/15 bg-crimson/5 text-crimson'
           }`}>
-            <Icon className="h-6 w-6" />
+            <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
           </span>
         )}
         <p
-          className={`font-display text-4xl font-extrabold sm:text-5xl ${
+          className={`whitespace-nowrap font-display text-3xl font-extrabold sm:text-5xl ${
             light ? 'text-white' : 'text-navy'
           }`}
         >
@@ -79,7 +79,7 @@ export function StatCounter({ value, suffix = '', label, light = false, icon: Ic
           <span className="text-crimson">{suffix}</span>
         </p>
       </div>
-      <p className={`mt-2 text-sm font-medium ${light ? 'text-brand-100' : 'text-slate-500'}`}>
+      <p className={`mt-3 max-w-[170px] text-sm font-medium leading-snug ${light ? 'text-brand-100' : 'text-slate-500'}`}>
         {label}
       </p>
     </div>
