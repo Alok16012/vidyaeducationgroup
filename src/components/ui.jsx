@@ -38,7 +38,7 @@ export function SectionHeading({ eyebrow, title, subtitle, align = 'center', lig
   )
 }
 
-export function StatCounter({ value, suffix = '', label, light = false }) {
+export function StatCounter({ value, suffix = '', label, light = false, icon: Icon }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
   const [n, setN] = useState(0)
@@ -60,14 +60,25 @@ export function StatCounter({ value, suffix = '', label, light = false }) {
 
   return (
     <div ref={ref} className="text-center">
-      <p
-        className={`font-display text-4xl font-extrabold sm:text-5xl ${
-          light ? 'text-white' : 'text-navy'
-        }`}
-      >
-        {n.toLocaleString('en-IN')}
-        <span className="text-crimson">{suffix}</span>
-      </p>
+      <div className="flex items-center justify-center gap-3">
+        {Icon && (
+          <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border sm:h-12 sm:w-12 ${
+            light
+              ? 'border-white/20 bg-white/10 text-crimson'
+              : 'border-crimson/15 bg-crimson/5 text-crimson'
+          }`}>
+            <Icon className="h-6 w-6" />
+          </span>
+        )}
+        <p
+          className={`font-display text-4xl font-extrabold sm:text-5xl ${
+            light ? 'text-white' : 'text-navy'
+          }`}
+        >
+          {n.toLocaleString('en-IN')}
+          <span className="text-crimson">{suffix}</span>
+        </p>
+      </div>
       <p className={`mt-2 text-sm font-medium ${light ? 'text-brand-100' : 'text-slate-500'}`}>
         {label}
       </p>

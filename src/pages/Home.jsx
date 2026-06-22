@@ -14,6 +14,8 @@ import {
   Phone,
   Quote,
   Utensils,
+  Trophy,
+  Armchair,
 } from 'lucide-react'
 import { Reveal, SectionHeading, StatCounter, CTASection, Pill } from '../components/ui.jsx'
 import LeadForm from '../components/LeadForm.jsx'
@@ -120,9 +122,13 @@ function Hero() {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-100 ring-1 ring-white/20"
+            className="inline-flex max-w-full items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 text-left text-[11px] font-bold leading-relaxed text-brand-100 ring-1 ring-white/20 sm:rounded-full sm:py-1.5 sm:text-xs sm:uppercase sm:tracking-wider"
           >
-            <Sparkles className="h-3.5 w-3.5 text-crimson" /> {BRAND.tagline}
+            <Sparkles className="h-3.5 w-3.5 shrink-0 text-crimson" />
+            <span className="sm:hidden">
+              अब आपकी हर शैक्षणिक जरूरत का एक ही समाधान — VIDYA EDUCATION GROUP!
+            </span>
+            <span className="hidden sm:inline">{BRAND.tagline}</span>
           </motion.span>
 
           <motion.figure
@@ -132,8 +138,8 @@ function Hero() {
             className="mt-5 overflow-hidden rounded-3xl border border-white/20 bg-white/10 shadow-premium"
           >
             <img
-              src="/images/student-services-hero.png"
-              alt="Students using Vidya's coaching, library, tiffin and consultancy services"
+              src="/images/student-services-hero.jpg"
+              alt="Vidya Education Group coaching, library, consultancy, hostel and tiffin services"
               className="aspect-[8/5] w-full object-cover"
             />
           </motion.figure>
@@ -156,7 +162,7 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-brand-100"
+            className="mt-10 hidden flex-wrap items-center gap-x-8 gap-y-3 text-sm text-brand-100 sm:flex"
           >
             <span className="flex items-center gap-2">
               <ShieldCheck className="h-5 w-5 text-crimson" /> 10+ years of trust
@@ -334,12 +340,14 @@ function Routes3() {
 }
 
 function Stats() {
+  const icons = [Users, Trophy, Armchair, ShieldCheck]
+
   return (
     <section className="relative overflow-hidden bg-navy-gradient py-16 text-white">
       <div className="absolute inset-0 bg-hero-grid [background-size:22px_22px] opacity-30" />
       <div className="container-page relative grid grid-cols-2 gap-8 lg:grid-cols-4">
-        {STATS.map((s) => (
-          <StatCounter key={s.label} {...s} light />
+        {STATS.map((s, index) => (
+          <StatCounter key={s.label} {...s} icon={icons[index]} light />
         ))}
       </div>
     </section>
