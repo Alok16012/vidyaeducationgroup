@@ -117,17 +117,25 @@ function Hero() {
       <div className="absolute -right-32 top-10 h-96 w-96 rounded-full bg-crimson/20 blur-3xl" />
       <div className="absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-slateblue/40 blur-3xl" />
 
-      <div className="container-page relative grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+      <div className="container-page relative grid items-center gap-12 py-8 lg:grid-cols-2 lg:py-24">
         <div className="min-w-0">
+          <motion.img
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            src="/images/hero-mobile-wordmark.png"
+            alt="New Vidya Education Group"
+            className="mx-auto mb-4 block h-auto w-[82%] max-w-[315px] rounded-2xl border border-white/15 bg-white object-contain p-2 shadow-premium sm:hidden"
+          />
+
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex max-w-full items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 text-left text-[11px] font-bold leading-relaxed text-brand-100 ring-1 ring-white/20 sm:rounded-full sm:py-1.5 sm:text-xs sm:uppercase sm:tracking-wider"
+            className="mx-auto flex w-[82%] max-w-[315px] items-center justify-center gap-2 rounded-2xl bg-white/10 px-4 py-2 text-center text-[11px] font-bold leading-relaxed text-brand-100 ring-1 ring-white/20 sm:mx-0 sm:inline-flex sm:w-auto sm:max-w-full sm:justify-start sm:rounded-full sm:py-1.5 sm:text-left sm:text-xs sm:uppercase sm:tracking-wider"
           >
             <Sparkles className="h-3.5 w-3.5 shrink-0 text-crimson" />
             <span className="sm:hidden">
-              अब आपकी हर शैक्षणिक जरूरत का एक ही समाधान —{' '}
-              <span className="whitespace-nowrap">VIDYA EDUCATION GROUP!</span>
+              अब आपकी हर शैक्षणिक जरूरत का एक ही समाधान —
+              <span className="block text-center whitespace-nowrap">VIDYA EDUCATION GROUP!</span>
             </span>
             <span className="hidden sm:inline">{BRAND.tagline}</span>
           </motion.span>

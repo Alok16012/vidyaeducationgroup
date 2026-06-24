@@ -58,11 +58,16 @@ export default function Navbar() {
       </div>
 
       {/* main bar */}
-      <div className="container-page flex h-16 items-center justify-between lg:h-20">
+      <div className="container-page relative flex h-20 items-center justify-between lg:h-20">
         <Link to="/" aria-label="Home">
           <Logo className="hidden lg:flex" />
           <MobileLogo className="lg:hidden" />
         </Link>
+        <img
+          src="/images/director-mobile-title.png"
+          alt="Director Mr. Chandan Kumar"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-10 w-[172px] -translate-x-1/2 -translate-y-1/2 object-contain sm:h-12 sm:w-[230px] lg:hidden"
+        />
 
         {/* desktop nav */}
         <nav className="hidden items-center gap-1 lg:flex">
@@ -262,7 +267,7 @@ function MobileLogo({ className = '' }) {
     <img
       src="/images/vidya-mobile-logo.png"
       alt="New Vidya Education Group, Director Mr. Chandan Kumar"
-      className={`h-[52px] w-auto max-w-[225px] object-contain ${className}`}
+      className={`h-[72px] w-[72px] object-contain ${className}`}
     />
   )
 }
