@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="container-page py-14">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Logo boxed imgClass="h-24" />
+            <Logo boxed src="/images/footer-vidya-logo.jpg" imgClass="h-36 sm:h-40" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-400">
               An integrated education ecosystem in Patna — competitive coaching, a 24/7 premium
               digital library, and expert career consultancy under one trusted roof.

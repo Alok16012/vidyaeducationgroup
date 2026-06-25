@@ -39,7 +39,7 @@ const ROUTES = [
     points: ['Online App', 'Offline Centre', 'Test Series'],
   },
   {
-    title: 'Tiffin Services',
+    title: 'Tiffin Services (Mess)',
     desc: 'Healthy & tasty home-style tiffin (mess) delivered fresh to your library cabin or hostel.',
     icon: Utensils,
     to: '/tiffin',
@@ -377,16 +377,29 @@ function Testimonials() {
     { name: 'Pooja Kumari', tag: 'Online Course', rating: 4.7, text: 'Recorded lessons and test practice let me study around my schedule while still staying connected with the faculty.' },
   ]
 
+  const RatingStars = ({ rating, size = 'h-4 w-4' }) => (
+    <div className="flex" aria-label={`${rating.toFixed(1)} out of 5 stars`}>
+      {[0, 1, 2, 3, 4].map((star) => {
+        const fill = Math.max(0, Math.min(1, rating - star))
+
+        return (
+          <span key={star} className={`relative inline-block ${size}`}>
+            <Star className={`absolute inset-0 ${size} fill-amber-100 text-amber-200`} />
+            <span className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${fill * 100}%` }}>
+              <Star className={`${size} fill-amber-400 text-amber-400`} />
+            </span>
+          </span>
+        )
+      })}
+    </div>
+  )
+
   const ReviewCard = ({ review }) => (
     <blockquote className="card flex min-h-[260px] w-[300px] shrink-0 flex-col p-6 sm:w-[350px]">
       <div className="flex items-center justify-between gap-3">
         <Quote className="h-8 w-8 text-crimson/30" />
         <div className="flex items-center gap-1">
-          <div className="flex" aria-label={`${review.rating} out of 5 stars`}>
-            {[0, 1, 2, 3, 4].map((star) => (
-              <Star key={star} className="h-4 w-4 fill-amber-400 text-amber-400" />
-            ))}
-          </div>
+          <RatingStars rating={review.rating} />
           <span className="ml-1 text-xs font-bold text-navy">{review.rating.toFixed(1)}</span>
         </div>
       </div>
@@ -415,11 +428,7 @@ function Testimonials() {
         </Reveal>
         <Reveal delay={0.08}>
           <div className="mx-auto mt-7 flex w-fit items-center gap-4 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-3 shadow-card">
-            <div className="flex" aria-label="Overall rating 4.8 out of 5 stars">
-              {[0, 1, 2, 3, 4].map((star) => (
-                <Star key={star} className="h-5 w-5 fill-amber-400 text-amber-400" />
-              ))}
-            </div>
+            <RatingStars rating={4.8} size="h-5 w-5" />
             <div className="border-l border-amber-200 pl-4">
               <p className="font-display text-lg font-extrabold text-navy">
                 4.8 <span className="text-sm text-slate-500">out of 5</span>
