@@ -16,6 +16,7 @@ import {
   Utensils,
   Trophy,
   Armchair,
+  BedDouble,
 } from 'lucide-react'
 import { Reveal, SectionHeading, StatCounter, CTASection, Pill } from '../components/ui.jsx'
 import LeadForm from '../components/LeadForm.jsx'
@@ -45,6 +46,14 @@ const ROUTES = [
     to: '/tiffin',
     accent: 'from-emerald-500 to-emerald-700',
     points: ['Pure Veg', 'Fresh Daily', 'Free Delivery'],
+  },
+  {
+    title: 'Hostel',
+    desc: 'Safe and comfortable student stay with Wi-Fi, security and a study-friendly environment.',
+    icon: BedDouble,
+    to: '/hostel',
+    accent: 'from-amber-500 to-red-600',
+    points: ['Safe Stay', 'Wi-Fi', 'Study Friendly'],
   },
   {
     title: 'Consultancy',
@@ -200,19 +209,19 @@ function Hero() {
                   Choose your path
                 </p>
                 <span className="service-count rounded-full bg-crimson/10 px-3 py-1 text-xs font-bold text-crimson">
-                  4 Services
+                  {ROUTES.length} Services
                 </span>
               </div>
-              <div className="mt-4 space-y-3">
+              <div className="mt-4 space-y-2.5 sm:space-y-3">
                 {ROUTES.map((r, index) => (
                   <Link
                     key={r.to}
                     to={r.to}
                     style={{ '--service-delay': `${index * 1.4}s` }}
-                    className="service-path-card group flex items-center gap-4 rounded-2xl border border-slate-100 bg-softgrey/60 p-4 transition hover:-translate-y-1 hover:border-slateblue hover:bg-white hover:shadow-card"
+                    className="service-path-card group flex items-center gap-3 rounded-2xl border border-slate-100 bg-softgrey/60 p-3 transition hover:-translate-y-1 hover:border-slateblue hover:bg-white hover:shadow-card sm:gap-4 sm:p-4"
                   >
                     <span
-                      className={`service-path-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${r.accent} text-white`}
+                      className={`service-path-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${r.accent} text-white sm:h-12 sm:w-12`}
                     >
                       <r.icon className="h-6 w-6" />
                     </span>
@@ -312,12 +321,12 @@ function Routes3() {
       <div className="container-page">
         <Reveal>
           <SectionHeading
-            eyebrow="Four pillars, one campus"
+            eyebrow="Five services, one campus"
             title="Everything a serious aspirant needs"
-            subtitle="From classroom to library to career placement and healthy daily meals — explore the division that fits where you are right now."
+            subtitle="From classroom to library to hostel stay, career guidance and healthy daily meals — explore the division that fits where you are right now."
           />
         </Reveal>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {ROUTES.map((r, i) => (
             <Reveal delay={i * 0.1} key={r.to}>
               <div className="card group flex h-full flex-col overflow-hidden">
@@ -365,20 +374,22 @@ function Stats() {
 
 function Testimonials() {
   const data = [
-    { name: 'Amit Raj', tag: 'Railway ALP, Selected', rating: 4.9, text: 'The technical faculty and daily test series gave me real exam confidence. The 24/7 library was my second home.' },
-    { name: 'Priya Sharma', tag: 'B.Tech Admission', rating: 4.8, text: 'Their consultancy team mapped my whole roadmap and got me into a top engineering college. Truly right guidance.' },
+    { name: 'Amit Raj', tag: 'Railway ALP, Selected', rating: 5, text: 'The technical faculty and daily test series gave me real exam confidence. The 24/7 library was my second home.' },
+    { name: 'Priya Sharma', tag: 'B.Tech Admission', rating: 5, text: 'Their consultancy team mapped my whole roadmap and got me into a top engineering college. Truly right guidance.' },
     { name: 'Sonu Kumar', tag: 'Non-Technical Batch', rating: 5, text: 'Deepak Sir’s reasoning tricks and motivation completely changed my preparation. Affordable and world-class.' },
-    { name: 'Neha Kumari', tag: 'SSC Foundation', rating: 4.8, text: 'The structured classes and regular practice sets helped me improve my speed and accuracy every week.' },
-    { name: 'Rahul Kumar', tag: 'Premium Library', rating: 4.9, text: 'The peaceful environment, personal locker and 24/7 access made it much easier to maintain a serious study routine.' },
-    { name: 'Anjali Singh', tag: 'Banking Foundation', rating: 4.7, text: 'Faculty members explain every topic patiently, and the doubt support keeps the preparation clear and focused.' },
-    { name: 'Rohit Raj', tag: 'Bihar Daroga Batch', rating: 4.8, text: 'The syllabus plan, mock tests and consistent guidance gave my preparation the direction it was missing.' },
-    { name: 'Sakshi Verma', tag: 'Career Consultancy', rating: 4.9, text: 'I received clear information about courses, colleges and admission options without any confusion or pressure.' },
-    { name: 'Aditya Anand', tag: 'Digital Library', rating: 4.8, text: 'Fast Wi-Fi, comfortable seating and a disciplined atmosphere make this a dependable place for long study hours.' },
-    { name: 'Pooja Kumari', tag: 'Online Course', rating: 4.7, text: 'Recorded lessons and test practice let me study around my schedule while still staying connected with the faculty.' },
+    { name: 'Neha Kumari', tag: 'SSC Foundation', rating: 5, text: 'The structured classes and regular practice sets helped me improve my speed and accuracy every week.' },
+    { name: 'Rahul Kumar', tag: 'Premium Library', rating: 5, text: 'The peaceful environment, personal locker and 24/7 access made it much easier to maintain a serious study routine.' },
+    { name: 'Anjali Singh', tag: 'Banking Foundation', rating: 4, text: 'Faculty members explain every topic patiently, and the doubt support keeps the preparation clear and focused.' },
+    { name: 'Rohit Raj', tag: 'Bihar Daroga Batch', rating: 5, text: 'The syllabus plan, mock tests and consistent guidance gave my preparation the direction it was missing.' },
+    { name: 'Sakshi Verma', tag: 'Career Consultancy', rating: 5, text: 'I received clear information about courses, colleges and admission options without any confusion or pressure.' },
+    { name: 'Aditya Anand', tag: 'Digital Library', rating: 4, text: 'Fast Wi-Fi, comfortable seating and a disciplined atmosphere make this a dependable place for long study hours.' },
+    { name: 'Pooja Kumari', tag: 'Online Course', rating: 4, text: 'Recorded lessons and test practice let me study around my schedule while still staying connected with the faculty.' },
   ]
 
+  const ratingLabel = (rating) => (Number.isInteger(rating) ? String(rating) : rating.toFixed(1))
+
   const RatingStars = ({ rating, size = 'h-4 w-4' }) => (
-    <div className="flex" aria-label={`${rating.toFixed(1)} out of 5 stars`}>
+    <div className="flex" aria-label={`${ratingLabel(rating)} out of 5 stars`}>
       {[0, 1, 2, 3, 4].map((star) => {
         const fill = Math.max(0, Math.min(1, rating - star))
 
@@ -400,7 +411,7 @@ function Testimonials() {
         <Quote className="h-8 w-8 text-crimson/30" />
         <div className="flex items-center gap-1">
           <RatingStars rating={review.rating} />
-          <span className="ml-1 text-xs font-bold text-navy">{review.rating.toFixed(1)}</span>
+          <span className="ml-1 text-xs font-bold text-navy">{ratingLabel(review.rating)}</span>
         </div>
       </div>
       <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">“{review.text}”</p>
