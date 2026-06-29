@@ -63,9 +63,9 @@ export default function Navbar() {
           <Logo className="hidden lg:flex" />
           <MobileLogo className="lg:hidden" />
         </Link>
-        <div className="pointer-events-none absolute left-1/2 top-1/2 w-[190px] -translate-x-1/2 -translate-y-1/2 text-center font-display font-extrabold leading-none drop-shadow-sm sm:w-[230px] lg:hidden">
-          <span className="block text-[18px] text-slateblue sm:text-[20px]">Director</span>
-          <span className="mt-1 block text-[20px] text-crimson sm:text-[24px]">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 w-[220px] -translate-x-1/2 -translate-y-1/2 text-center font-display font-extrabold leading-none drop-shadow-sm sm:w-[260px] lg:hidden">
+          <span className="inline-block border-b-2 border-slateblue pb-1 text-[17px] text-slateblue sm:text-[20px]">Director</span>
+          <span className="mt-1.5 block whitespace-nowrap text-[18px] text-crimson sm:text-[23px]">
             Mr. Chandan Kumar
           </span>
         </div>

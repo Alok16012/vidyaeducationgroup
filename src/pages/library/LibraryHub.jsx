@@ -15,10 +15,10 @@ import BookingSummary from './BookingSummary.jsx'
 
 export default function LibraryHub() {
   const wings = [
-    { key: 'toppers', icon: BookMarked, tag: 'Value', desc: 'Affordable focused study hall with desks, lighting and charging points.', grad: 'bg-navy-gradient' },
-    { key: 'digital', icon: Tablet, tag: 'Digital', desc: 'Tablet access, e-books, online mock tests and high-speed fiber Wi-Fi.', grad: 'bg-gradient-to-br from-cyan-500 to-blue-700' },
-    { key: 'premium', icon: Crown, tag: 'Premium', desc: 'Executive ergonomic AC cabins, individual plug points and tablet access.', grad: 'bg-gradient-to-br from-crimson to-red-700' },
-    { key: 'luxury', icon: Gem, tag: 'Luxury', desc: 'Five-star private cabins, recliner seating, lounge and priority concierge.', grad: 'bg-gradient-to-br from-amber-500 to-yellow-600' },
+    { key: 'toppers', icon: BookMarked, grad: 'bg-navy-gradient', cta: 'bg-navy text-white group-hover:bg-slateblue' },
+    { key: 'digital', icon: Tablet, grad: 'bg-gradient-to-br from-cyan-500 to-blue-700', cta: 'bg-blue-700 text-white group-hover:bg-cyan-600' },
+    { key: 'premium', icon: Crown, grad: 'bg-gradient-to-br from-crimson to-red-700', cta: 'bg-crimson text-white group-hover:bg-red-700' },
+    { key: 'luxury', icon: Gem, grad: 'bg-gradient-to-br from-amber-500 to-yellow-600', cta: 'bg-amber-500 text-navy group-hover:bg-yellow-500' },
   ].map((wing) => ({
     ...wing,
     ...LIBRARY_ADDRESSES.find((item) => item.key === wing.key),
@@ -54,18 +54,17 @@ export default function LibraryHub() {
                 <Link to={w.to} className="card group flex h-full flex-col overflow-hidden">
                   <div className={`flex items-center justify-between ${w.grad} p-5 text-white`}>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-bold">
-                      <w.icon className="h-3.5 w-3.5" /> {w.tag}
+                      <w.icon className="h-3.5 w-3.5" /> {w.label}
                     </span>
                     <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     <p className="font-display text-lg font-bold text-navy">{w.label}</p>
-                    <p className="mt-2 flex-1 text-sm text-slate-600">{w.desc}</p>
-                    <p className="mt-4 flex items-start gap-2 border-t border-slate-100 pt-4 text-xs leading-relaxed text-slate-500">
+                    <p className="mt-4 flex flex-1 items-start gap-2 border-t border-slate-100 pt-4 text-xs leading-relaxed text-slate-500">
                       <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-crimson" />
                       {w.address}
                     </p>
-                    <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-navy px-4 py-2 text-xs font-extrabold uppercase text-white transition group-hover:bg-crimson">
+                    <span className={`mt-5 inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 text-xs font-extrabold uppercase transition ${w.cta}`}>
                       Explore Now <ArrowRight className="h-3.5 w-3.5" />
                     </span>
                   </div>
