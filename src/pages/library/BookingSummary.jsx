@@ -1,4 +1,4 @@
-import { Armchair, BedDouble, Building2, CalendarDays, CheckCircle2, ReceiptText } from 'lucide-react'
+import { Armchair, BedDouble, Building2, CalendarDays, CheckCircle2, Info, ReceiptText } from 'lucide-react'
 import { SectionHeading, Reveal } from '../../components/ui.jsx'
 import {
   LIBRARY_BOOKING,
@@ -123,6 +123,13 @@ export default function BookingSummary({ selectedKey }) {
               </p>
             </div>
           </Reveal>
+        </div>
+
+        <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
+          <p className="flex items-start gap-2">
+            <Info className="mt-0.5 h-4 w-4 shrink-0" />
+            <span>Note: 1 & 2 shifts me seat reserve nahi hota hai.</span>
+          </p>
         </div>
       </div>
     </section>

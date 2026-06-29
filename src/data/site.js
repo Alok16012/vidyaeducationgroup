@@ -68,6 +68,10 @@ export const NAV = [
     to: '/tiffin',
   },
   {
+    label: 'Hostel',
+    to: '/hostel',
+  },
+  {
     label: 'Consultancy',
     to: '/consultancy',
   },

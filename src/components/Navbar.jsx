@@ -63,14 +63,15 @@ export default function Navbar() {
           <Logo className="hidden lg:flex" />
           <MobileLogo className="lg:hidden" />
         </Link>
-        <img
-          src="/images/director-mobile-title.png"
-          alt="Director Mr. Chandan Kumar"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-10 w-[172px] -translate-x-1/2 -translate-y-1/2 object-contain sm:h-12 sm:w-[230px] lg:hidden"
-        />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 w-[190px] -translate-x-1/2 -translate-y-1/2 text-center font-display font-extrabold leading-none drop-shadow-sm sm:w-[230px] lg:hidden">
+          <span className="block text-[18px] text-slateblue sm:text-[20px]">Director</span>
+          <span className="mt-1 block text-[20px] text-crimson sm:text-[24px]">
+            Mr. Chandan Kumar
+          </span>
+        </div>
 
         {/* desktop nav */}
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {NAV.map((item) =>
             item.children ? (
               <div
@@ -79,7 +80,7 @@ export default function Navbar() {
                 onMouseEnter={() => setOpenGroup(item.label)}
                 onMouseLeave={() => setOpenGroup(null)}
               >
-                <button className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-navy transition hover:text-slateblue">
+                <button className="flex items-center gap-1 rounded-lg px-2.5 py-2 text-sm font-semibold text-navy transition hover:text-slateblue xl:px-3">
                   {item.label}
                   <ChevronDown className="h-4 w-4 transition group-hover:rotate-180" />
                 </button>
@@ -121,7 +122,7 @@ export default function Navbar() {
                 to={item.to}
                 end={item.to === '/'}
                 className={({ isActive }) =>
-                  `rounded-lg px-3 py-2 text-sm font-semibold transition ${
+                  `rounded-lg px-2.5 py-2 text-sm font-semibold transition xl:px-3 ${
                     isActive ? 'text-crimson' : 'text-navy hover:text-slateblue'
                   }`
                 }

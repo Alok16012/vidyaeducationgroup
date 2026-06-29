@@ -18,16 +18,71 @@ import { SectionHeading, Reveal, FeatureCard, Pill } from '../../components/ui.j
 import { BRAND } from '../../data/site.js'
 
 const COURSE_GROUPS = [
-  { group: 'UG (Under Graduate)', icon: GraduationCap, courses: ['BCA', 'BBA', 'B.Sc', 'B.Com', 'BA', 'Other UG Course'] },
-  { group: 'PG (Post Graduate)', icon: BookOpen, courses: ['MCA', 'MBA', 'M.Sc', 'M.Com', 'MA', 'Other PG Course'] },
-  { group: 'Medical', icon: Stethoscope, courses: ['MBBS', 'Nursing', 'ANM', 'GNM', 'B.Sc Nursing'] },
-  { group: 'Law', icon: Building2, courses: ['LLB', 'BA LLB', 'BBA LLB', 'Other Law Course'] },
-  { group: 'Management', icon: UserRound, courses: ['BBA', 'MBA', 'PGDM', 'Other Management Course'] },
+  { group: 'Management', icon: UserRound, courses: ['BBA', 'MBA', 'PGDM', 'BHM', 'BHMCT'] },
+  { group: 'Computer & Technology', icon: Laptop, courses: ['BCA', 'MCA', 'B.Tech CSE', 'B.Tech AI-ML', 'B.Tech AI-DS', 'M.Tech'] },
+  { group: 'Healthcare', icon: Stethoscope, courses: ['ANM', 'GNM', 'B.Sc Nursing', 'BPT', 'MPT', 'BMLT'] },
+  { group: 'Pharma', icon: BookOpen, courses: ['B.Pharma', 'D.Pharma', 'Pharma D'] },
+  { group: 'Engineering & Diploma', icon: Building2, courses: ['B.Tech Civil', 'B.Tech Electrical', 'B.Tech Mechanical', 'M.Tech', 'Biotechnology', 'Diploma Courses'] },
+  { group: 'Agriculture', icon: GraduationCap, courses: ['B.Sc Agriculture'] },
 ]
 
 const COURSE_MODES = ['Regular Mode', 'Online Course', 'Distance Course']
 const COUNSELLING_TYPES = ['Office Visit Counselling', 'Telephonic Counselling', 'Video Calling Counselling']
 const STATES = ['Bihar', 'Jharkhand', 'Uttar Pradesh', 'West Bengal', 'Delhi NCR', 'Karnataka', 'Maharashtra', 'Other']
+const CATEGORY_DETAILS = {
+  Management: {
+    title: 'Management Colleges',
+    desc: 'Admission guidance for BBA, MBA, PGDM, hotel management and hospitality courses.',
+    colleges: [
+      { name: 'BBA / MBA College Options', info: 'Compare eligibility, fee, specialization, placement support and admission process.', website: 'Shared after state-wise shortlist' },
+      { name: 'PGDM Institute Options', info: 'Shortlist colleges by approval, specialization, practical exposure and admission timeline.', website: 'Shared after state-wise shortlist' },
+      { name: 'Hotel Management College Options', info: 'BHM and BHMCT options with course duration, training and career scope guidance.', website: 'Shared after state-wise shortlist' },
+    ],
+  },
+  'Computer & Technology': {
+    title: 'Computer & Technology Colleges',
+    desc: 'College guidance for BCA, MCA, B.Tech CSE, AI-ML, AI-DS and M.Tech programs.',
+    colleges: [
+      { name: 'BCA / MCA College Options', info: 'Compare computer application colleges by mode, fee, labs and placement support.', website: 'Shared after state-wise shortlist' },
+      { name: 'B.Tech CSE / AI College Options', info: 'Shortlist CSE, AI-ML and AI-DS branches with eligibility and admission steps.', website: 'Shared after state-wise shortlist' },
+      { name: 'M.Tech College Options', info: 'Postgraduate technology college guidance with branch and document support.', website: 'Shared after state-wise shortlist' },
+    ],
+  },
+  Healthcare: {
+    title: 'Healthcare Colleges',
+    desc: 'Guidance for ANM, GNM, B.Sc Nursing, BPT, MPT and BMLT admissions.',
+    colleges: [
+      { name: 'Nursing College Options', info: 'ANM, GNM and B.Sc Nursing options with eligibility, documents and admission process.', website: 'Shared after state-wise shortlist' },
+      { name: 'Physiotherapy College Options', info: 'BPT and MPT college guidance with course duration and career scope details.', website: 'Shared after state-wise shortlist' },
+      { name: 'Medical Lab Technology Options', info: 'BMLT college shortlist with course details, fee guidance and admission support.', website: 'Shared after state-wise shortlist' },
+    ],
+  },
+  Pharma: {
+    title: 'Pharma Colleges',
+    desc: 'Admission guidance for B.Pharma, D.Pharma and Pharma D programs.',
+    colleges: [
+      { name: 'B.Pharma College Options', info: 'Bachelor pharmacy college guidance with eligibility, approval and admission process.', website: 'Shared after state-wise shortlist' },
+      { name: 'D.Pharma College Options', info: 'Diploma pharmacy shortlist with fee, documents and counselling support.', website: 'Shared after state-wise shortlist' },
+      { name: 'Pharma D College Options', info: 'Doctor of Pharmacy admission guidance with course and college comparison.', website: 'Shared after state-wise shortlist' },
+    ],
+  },
+  'Engineering & Diploma': {
+    title: 'Engineering & Diploma Colleges',
+    desc: 'Guidance for B.Tech, M.Tech, biotechnology and diploma engineering courses.',
+    colleges: [
+      { name: 'B.Tech Branch Options', info: 'Civil, Electrical and Mechanical branch guidance with eligibility and fee comparison.', website: 'Shared after state-wise shortlist' },
+      { name: 'Diploma Engineering Options', info: 'Diploma course shortlist with branch, duration, fee and admission steps.', website: 'Shared after state-wise shortlist' },
+      { name: 'Biotechnology / M.Tech Options', info: 'Higher technical course guidance with branch selection and college details.', website: 'Shared after state-wise shortlist' },
+    ],
+  },
+  Agriculture: {
+    title: 'Agriculture Colleges',
+    desc: 'Guidance for B.Sc Agriculture admission, eligibility and college selection.',
+    colleges: [
+      { name: 'B.Sc Agriculture College Options', info: 'Agriculture college shortlist with eligibility, fee, location and admission support.', website: 'Shared after state-wise shortlist' },
+    ],
+  },
+}
 const STATE_COLLEGES = {
   Bihar: [],
   Jharkhand: [],
@@ -41,8 +96,8 @@ const STATE_COLLEGES = {
 
 const initialForm = {
   serviceType: 'Counselling',
-  courseGroup: 'UG (Under Graduate)',
-  course: 'BCA',
+  courseGroup: 'Management',
+  course: 'BBA',
   courseMode: 'Regular Mode',
   counsellingType: 'Office Visit Counselling',
   state: 'Bihar',
@@ -58,6 +113,7 @@ export default function ConsultancyGateway() {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [isFormOpen, setIsFormOpen] = useState(true)
+  const [hasSubmitted, setHasSubmitted] = useState(false)
 
   useEffect(() => {
     document.body.style.overflow = isFormOpen ? 'hidden' : ''
@@ -70,20 +126,33 @@ export default function ConsultancyGateway() {
     () => COURSE_GROUPS.find((item) => item.group === form.courseGroup) || COURSE_GROUPS[0],
     [form.courseGroup],
   )
-  const selectedColleges = useMemo(() => STATE_COLLEGES[form.state] || [], [form.state])
+  const selectedColleges = useMemo(() => {
+    const exactColleges = STATE_COLLEGES[form.state] || []
+    if (exactColleges.length) return exactColleges
+    const category = CATEGORY_DETAILS[form.courseGroup]
+    return (category?.colleges || []).map((college) => ({
+      ...college,
+      name: `${form.state} - ${college.name}`,
+    }))
+  }, [form.courseGroup, form.state])
 
   const update = (key) => (event) => {
     const value = event.target.value
     setForm((current) => {
       if (key === 'courseGroup') {
         const nextGroup = COURSE_GROUPS.find((item) => item.group === value) || COURSE_GROUPS[0]
-        return { ...current, courseGroup: value, course: nextGroup.courses[0] }
+        return { ...current, courseGroup: value, course: nextGroup.courses[0], collegeName: '', collegeInfo: '', collegeWebsite: '' }
       }
       if (key === 'state') {
         return { ...current, state: value, collegeName: '', collegeInfo: '', collegeWebsite: '' }
       }
       if (key === 'collegeName') {
-        const college = (STATE_COLLEGES[current.state] || []).find((item) => item.name === value)
+        const stateColleges = STATE_COLLEGES[current.state] || []
+        const categoryColleges = (CATEGORY_DETAILS[current.courseGroup]?.colleges || []).map((item) => ({
+          ...item,
+          name: `${current.state} - ${item.name}`,
+        }))
+        const college = [...stateColleges, ...categoryColleges].find((item) => item.name === value)
         return {
           ...current,
           collegeName: value,
@@ -133,6 +202,8 @@ export default function ConsultancyGateway() {
     lines.push(`Mobile Number: ${form.phone}`)
     if (form.notes.trim()) lines.push(`Notes: ${form.notes.trim()}`)
 
+    setHasSubmitted(true)
+    setIsFormOpen(false)
     window.open(`https://wa.me/${BRAND.phonesRaw[0].replace('+', '')}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank')
   }
 
@@ -143,13 +214,14 @@ export default function ConsultancyGateway() {
           <Reveal>
             <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card">
               <p className="eyebrow">Consultancy</p>
-              <h1 className="heading-lg mt-3">Start with a quick form</h1>
+              <h1 className="heading-lg mt-3">{hasSubmitted ? 'College details unlocked' : 'Fill the form first'}</h1>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                Click below to open the enquiry form. Student details come first, then course, mode,
-                and either counselling or admission fields.
+                {hasSubmitted
+                  ? 'You can now view branch-wise college categories and admission details below.'
+                  : 'Submit the student enquiry form first. After submission, branch-wise college details will open on this page.'}
               </p>
               <button onClick={() => setIsFormOpen(true)} className="btn-crimson mt-6">
-                Open Counselling Form <MessageCircle className="h-4 w-4" />
+                {hasSubmitted ? 'Update Form' : 'Open Form'} <MessageCircle className="h-4 w-4" />
               </button>
             </div>
           </Reveal>
@@ -167,7 +239,7 @@ export default function ConsultancyGateway() {
               </div>
 
               <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card">
-                <h3 className="font-display text-lg font-bold text-navy">Available Course Areas</h3>
+                <h3 className="font-display text-lg font-bold text-navy">Course Dropdown</h3>
                 <div className="mt-5 space-y-4">
                   {COURSE_GROUPS.map((group) => (
                     <div key={group.group} className="rounded-2xl bg-softgrey p-4">
@@ -175,7 +247,7 @@ export default function ConsultancyGateway() {
                         <group.icon className="h-5 w-5 text-crimson" /> {group.group}
                       </div>
                       <div className="mt-3 flex flex-wrap gap-2">
-                        {group.courses.slice(0, 4).map((course) => <Pill key={course}>{course}</Pill>)}
+                        {group.courses.map((course) => <Pill key={course}>{course}</Pill>)}
                       </div>
                     </div>
                   ))}
@@ -321,27 +393,102 @@ export default function ConsultancyGateway() {
         </div>
       )}
 
-      <section className="section bg-softgrey">
-        <div className="container-page">
-          <Reveal>
-            <SectionHeading eyebrow="Support Options" title="How we guide students" />
-          </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: MapPin, title: 'Office Visit Counselling', desc: 'Visit our office for face-to-face guidance and document discussion.', accent: 'crimson' },
-              { icon: Phone, title: 'Telephonic Counselling', desc: 'Discuss course, mode and admission options over a phone call.', accent: 'slateblue' },
-              { icon: Video, title: 'Video Calling Counselling', desc: 'Get remote counselling with a complete explanation through video call.', accent: 'navy' },
-              { icon: Laptop, title: 'Online & Distance Options', desc: 'Compare regular, online and distance course modes before choosing.', accent: 'slateblue' },
-              { icon: Building2, title: 'College Details', desc: 'Ask for college information, website, state-wise options and admission steps.', accent: 'crimson' },
-              { icon: CheckCircle2, title: 'Charge Clarity', desc: 'Counselling charges are shared according to course, state and college details.', accent: 'navy' },
-            ].map((item, index) => (
-              <Reveal key={item.title} delay={(index % 3) * 0.08}>
-                <FeatureCard {...item} />
+      {hasSubmitted ? (
+        <>
+          <section className="section bg-softgrey">
+            <div className="container-page">
+              <Reveal>
+                <SectionHeading
+                  eyebrow="College List & Details"
+                  title="Branch-wise admission categories"
+                  desc="State-wise exact college names can be added here as soon as the final college list is shared. For now, students can see the course branch, college type, details and website status clearly."
+                />
               </Reveal>
-            ))}
+
+              <div className="mt-12 grid gap-6 lg:grid-cols-2">
+                {COURSE_GROUPS.map((group, index) => {
+                  const details = CATEGORY_DETAILS[group.group]
+                  return (
+                    <Reveal key={group.group} delay={(index % 2) * 0.08}>
+                      <div className={`h-full rounded-3xl border bg-white p-5 shadow-card ${form.courseGroup === group.group ? 'border-crimson/30 ring-4 ring-crimson/10' : 'border-slate-100'}`}>
+                        <div className="flex items-start gap-4">
+                          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-crimson/10 text-crimson">
+                            <group.icon className="h-6 w-6" />
+                          </span>
+                          <div>
+                            <h2 className="font-display text-xl font-bold text-navy">{details.title}</h2>
+                            <p className="mt-2 text-sm leading-relaxed text-slate-600">{details.desc}</p>
+                          </div>
+                        </div>
+
+                        <div className="mt-5 flex flex-wrap gap-2">
+                          {group.courses.map((course) => <Pill key={course}>{course}</Pill>)}
+                        </div>
+
+                        <div className="mt-6 space-y-3">
+                          {details.colleges.map((college) => (
+                            <div key={college.name} className="rounded-2xl border border-slate-100 bg-softgrey p-4">
+                              <h3 className="font-display text-base font-bold text-navy">{college.name}</h3>
+                              <p className="mt-2 text-sm leading-relaxed text-slate-600">{college.info}</p>
+                              <p className="mt-3 text-xs font-bold uppercase tracking-[0.16em] text-crimson">
+                                Website: {college.website}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="mt-5 rounded-2xl bg-navy px-4 py-3 text-sm font-semibold text-white">
+                          Counselling Charge: according to course, state and selected college details.
+                        </div>
+                      </div>
+                    </Reveal>
+                  )
+                })}
+              </div>
+            </div>
+          </section>
+
+          <section className="section bg-white">
+            <div className="container-page">
+              <Reveal>
+                <SectionHeading eyebrow="Support Options" title="How we guide students" />
+              </Reveal>
+              <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {[
+                  { icon: MapPin, title: 'Office Visit Counselling', desc: 'Visit our office for face-to-face guidance and document discussion.', accent: 'crimson' },
+                  { icon: Phone, title: 'Telephonic Counselling', desc: 'Discuss course, mode and admission options over a phone call.', accent: 'slateblue' },
+                  { icon: Video, title: 'Video Calling Counselling', desc: 'Get remote counselling with a complete explanation through video call.', accent: 'navy' },
+                  { icon: Laptop, title: 'Online & Distance Options', desc: 'Compare regular, online and distance course modes before choosing.', accent: 'slateblue' },
+                  { icon: Building2, title: 'College Details', desc: 'Ask for college information, website, state-wise options and admission steps.', accent: 'crimson' },
+                  { icon: CheckCircle2, title: 'Charge Clarity', desc: 'Counselling charges are shared according to course, state and college details.', accent: 'navy' },
+                ].map((item, index) => (
+                  <Reveal key={item.title} delay={(index % 3) * 0.08}>
+                    <FeatureCard {...item} />
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      ) : (
+        <section className="section bg-softgrey">
+          <div className="container-page">
+            <Reveal>
+              <div className="mx-auto max-w-3xl rounded-3xl border border-slate-100 bg-white p-6 text-center shadow-card sm:p-8">
+                <MessageCircle className="mx-auto h-10 w-10 text-crimson" />
+                <p className="eyebrow mt-4">Form Required</p>
+                <h2 className="heading-md mt-3">Submit the enquiry form to view college details</h2>
+                <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">
+                  Course category, state, counselling option and student details are needed first. After submit, this page will show the branch-wise college list and details.
+                </p>
+                <button onClick={() => setIsFormOpen(true)} className="btn-crimson mt-6">
+                  Open Form <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   )
 }

@@ -12,7 +12,7 @@ import {
   Phone,
   MapPin,
   MessageCircle,
-  ClipboardList,
+  CreditCard,
 } from 'lucide-react'
 import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection, Pill } from '../components/ui.jsx'
 import { BRAND } from '../data/site.js'
@@ -21,30 +21,29 @@ const TIFFIN_PHONE = '9934299198'
 const TIFFIN_PHONE_DISPLAY = '+91 99342 99198'
 const TIFFIN_ADDRESS = BRAND.address
 
-const RATES = [
+const TIFFIN_PLANS = [
   {
-    name: 'Veg Monthly Tiffin',
+    name: 'Veg',
+    headline: 'Pure veg home-style meals for daily student routine.',
     price: '₹2,200',
+    period: 'per month',
     tone: 'bg-emerald-50 text-emerald-700',
-    points: ['Fresh vegetarian meals', 'Student-friendly monthly plan', 'Dish choice available'],
+    border: 'border-emerald-100',
+    button: 'Start Veg Plan',
+    features: ['Fresh vegetarian meals', 'Student-friendly monthly plan', 'Dish choice available', 'Hygienic preparation'],
+    menu: ['Roti', 'Rice', 'Dal', 'Seasonal Sabzi', 'Paneer / Special Veg', 'Salad', 'Pickle'],
   },
   {
-    name: 'Non-Veg Monthly Tiffin',
+    name: 'Non-Veg',
+    headline: 'Balanced veg meals with non-veg options.',
     price: '₹2,400',
+    period: 'per month',
     tone: 'bg-crimson/10 text-crimson',
-    points: ['Veg meals with non-veg option', 'Monthly subscription', 'Dish choice available'],
+    border: 'border-crimson/15',
+    button: 'Start Non-Veg Plan',
+    features: ['Veg meals with non-veg option', 'Monthly subscription', 'Dish choice available', 'Freshly cooked food'],
+    menu: ['Roti', 'Rice', 'Dal', 'Seasonal Sabzi', 'Egg / Chicken option', 'Salad', 'Pickle'],
   },
-]
-
-const DISH_CHOICES = [
-  'Roti',
-  'Rice',
-  'Dal',
-  'Seasonal Sabzi',
-  'Paneer / Special Veg',
-  'Egg / Chicken option',
-  'Salad',
-  'Pickle',
 ]
 
 export default function TiffinService() {
@@ -52,7 +51,7 @@ export default function TiffinService() {
     <>
       <PageHero
         eyebrow="Tiffin Services"
-        title="Fresh student meals with"
+        title="Healthy meals, better focus with"
         highlight="your dish choice"
         subtitle="A simple monthly tiffin service for students. Choose dishes according to your taste, select veg or non-veg, and get hygienic home-style food at a student-friendly rate."
         breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Tiffin Services' }]}
@@ -67,62 +66,85 @@ export default function TiffinService() {
       </PageHero>
 
       <section className="section">
-        <div className="container-page grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="container-page">
           <Reveal>
             <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card">
               <SectionHeading
                 align="left"
-                eyebrow="Monthly Rates"
-                title="Clear pricing, simple subscription"
-                subtitle="Choose the plan that matches your food preference. Students can discuss dish choices before starting."
+                eyebrow="Veg / Non-Veg Plans"
+                title="Features, menu, fee and payment in one place"
+                subtitle="Choose Veg or Non-Veg, check the menu style, confirm monthly fee and start through call or WhatsApp payment support."
               />
-              <div className="mt-8 grid gap-5 sm:grid-cols-2">
-                {RATES.map((rate) => (
-                  <div key={rate.name} className="rounded-3xl border border-slate-100 p-5">
-                    <span className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${rate.tone}`}>
-                      Monthly
-                    </span>
-                    <h3 className="mt-4 font-display text-lg font-bold text-navy">{rate.name}</h3>
-                    <p className="mt-3 font-display text-5xl font-extrabold text-navy">{rate.price}</p>
-                    <p className="mt-1 text-sm text-slate-500">per month</p>
-                    <ul className="mt-5 space-y-3">
-                      {rate.points.map((point) => (
-                        <li key={point} className="flex items-start gap-2 text-sm font-medium text-slate-600">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" /> {point}
-                        </li>
-                      ))}
-                    </ul>
+              <div className="mt-8 grid gap-6 lg:grid-cols-2">
+                {TIFFIN_PLANS.map((plan) => (
+                  <div key={plan.name} className={`overflow-hidden rounded-3xl border bg-white shadow-card ${plan.border}`}>
+                    <div className="border-b border-slate-100 p-5">
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <span className={`inline-flex rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider ${plan.tone}`}>
+                          {plan.name}
+                        </span>
+                        <span className="rounded-full bg-softgrey px-3 py-1 text-xs font-bold text-slate-500">
+                          Monthly Plan
+                        </span>
+                      </div>
+                      <h3 className="mt-4 font-display text-2xl font-bold text-navy">{plan.headline}</h3>
+                      <div className="mt-4 flex items-end gap-2">
+                        <p className="font-display text-5xl font-extrabold text-navy">{plan.price}</p>
+                        <p className="pb-2 text-sm font-semibold text-slate-500">{plan.period}</p>
+                      </div>
+                    </div>
+
+                    <div className="grid gap-0 md:grid-cols-2">
+                      <div className="border-b border-slate-100 p-5 md:border-b-0 md:border-r">
+                        <h4 className="flex items-center gap-2 font-display text-base font-bold text-navy">
+                          <ShieldCheck className="h-5 w-5 text-crimson" /> Features
+                        </h4>
+                        <ul className="mt-4 space-y-3">
+                          {plan.features.map((point) => (
+                            <li key={point} className="flex items-start gap-2 text-sm font-medium text-slate-600">
+                              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" /> {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="p-5">
+                        <h4 className="flex items-center gap-2 font-display text-base font-bold text-navy">
+                          <Utensils className="h-5 w-5 text-crimson" /> Menu
+                        </h4>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {plan.menu.map((dish) => (
+                            <span key={dish} className="rounded-full bg-softgrey px-3 py-1.5 text-xs font-bold text-slate-600">
+                              {dish}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-slate-100 bg-softgrey p-5">
+                      <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center">
+                        <div>
+                          <h4 className="flex items-center gap-2 font-display text-base font-bold text-navy">
+                            <CreditCard className="h-5 w-5 text-crimson" /> Payment Gateway
+                          </h4>
+                          <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                            Confirm plan, dish preference and payment details on WhatsApp before starting.
+                          </p>
+                        </div>
+                        <a
+                          href={`https://wa.me/91${TIFFIN_PHONE}?text=${encodeURIComponent(`Hello, I want to start the ${plan.name} tiffin plan (${plan.price}/month). Please share payment details.`)}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="btn-crimson justify-center"
+                        >
+                          <MessageCircle className="h-4 w-4" /> {plan.button}
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <div className="h-full rounded-3xl bg-navy-gradient p-6 text-white shadow-premium">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15">
-                <ClipboardList className="h-6 w-6" />
-              </span>
-              <h2 className="mt-5 font-display text-2xl font-bold">Choose dishes your way</h2>
-              <p className="mt-3 text-sm leading-relaxed text-brand-100">
-                Students can choose dishes according to their taste and routine. Share your preference
-                for veg or non-veg meals, and we will guide you with available daily options.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {DISH_CHOICES.map((dish) => (
-                  <span key={dish} className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white ring-1 ring-white/10">
-                    {dish}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={`https://wa.me/91${TIFFIN_PHONE}?text=${encodeURIComponent('Hello, I want to start tiffin service and choose my dishes.')}`}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-crimson mt-8 w-full"
-              >
-                <MessageCircle className="h-4 w-4" /> Discuss Dish Choice
-              </a>
             </div>
           </Reveal>
         </div>

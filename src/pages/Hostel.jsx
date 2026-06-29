@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import {
   BedDouble,
   ShieldCheck,
@@ -12,54 +11,74 @@ import {
   Fan,
   CheckCircle2,
   MapPin,
+  CreditCard,
+  Navigation,
 } from 'lucide-react'
 import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection } from './../components/ui.jsx'
+import { BRAND } from '../data/site.js'
 
 const PLANS = [
   {
-    name: 'Triple Sharing',
-    price: '₹3,500',
+    name: 'Single Bed Room',
+    price: 'Contact',
     per: '/month',
-    points: ['3-bed shared room', 'Study table & cupboard', 'Wi-Fi + power backup', 'Common washroom'],
+    badge: 'Private',
+    points: ['Private single room', 'Study table & cupboard', 'Wi-Fi + power backup', 'Priority room availability check'],
   },
   {
-    name: 'Double Sharing',
-    price: '₹5,000',
+    name: 'Double Bed Room',
+    price: 'Contact',
     per: '/month',
     popular: true,
-    points: ['2-bed room', 'Attached washroom', 'Wi-Fi + power backup', 'Daily cleaning', 'Tiffin add-on available'],
+    badge: 'Popular',
+    points: ['2-bed sharing room', 'Study table & cupboard', 'Wi-Fi + power backup', 'Daily cleaning', 'Tiffin add-on available'],
   },
   {
-    name: 'Single Room',
-    price: '₹7,500',
+    name: 'Triple Bed Room',
+    price: 'Contact',
     per: '/month',
-    points: ['Private single room', 'Attached washroom', 'Priority Wi-Fi', 'Personal study setup'],
+    badge: 'Budget',
+    points: ['3-bed sharing room', 'Common study-friendly setup', 'Wi-Fi + power backup', 'Student-friendly monthly fee'],
+  },
+  {
+    name: 'Four Bed Room',
+    price: 'Contact',
+    per: '/month',
+    badge: 'Value',
+    points: ['4-bed sharing room', 'Affordable hostel option', 'Wi-Fi + power backup', 'Tiffin add-on available'],
   },
 ]
+
+const HOSTEL_MAP_URL = `https://maps.google.com/?q=${encodeURIComponent(BRAND.address)}`
+const HOSTEL_WHATSAPP = `https://wa.me/${BRAND.phonesRaw[0].replace('+', '')}`
 
 export default function Hostel() {
   return (
     <>
       <PageHero
         eyebrow="Hostel & Tiffin · Hostel"
-        title="A safe, comfortable home away from"
-        highlight="home in Patna"
-        subtitle="Secure, hygienic and well-managed student accommodation close to our coaching center and library — so outstation aspirants can focus fully on their studies."
+        title="Safe student rooms near your"
+        highlight="study campus"
+        subtitle="Choose single, double, triple or four-bed rooms with secure stay, essential facilities, fee guidance and payment support."
         breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Hostel' }]}
       >
-        <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold text-brand-100 ring-1 ring-white/20">
-          <MapPin className="h-4 w-4 text-crimson" /> Walking distance from coaching & library
-        </span>
+        <div className="flex flex-wrap gap-3">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold text-brand-100 ring-1 ring-white/20">
+            <MapPin className="h-4 w-4 text-crimson" /> Walking distance from coaching & library
+          </span>
+          <a href={HOSTEL_MAP_URL} target="_blank" rel="noreferrer" className="btn border border-white/30 bg-white/10 text-white hover:bg-white/20">
+            <Navigation className="h-4 w-4" /> MAP
+          </a>
+        </div>
       </PageHero>
 
-      {/* features */}
       <section className="section">
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow="Why our hostel"
-              title="Everything an aspirant needs to settle in"
-              subtitle="A disciplined, secure and study-friendly environment with all the daily essentials taken care of."
+              eyebrow="Hostel Features"
+              title="A disciplined stay for serious students"
+              subtitle="Safe rooms, clean facilities and study-friendly support so students can focus on coaching, library and preparation."
             />
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -79,17 +98,16 @@ export default function Hostel() {
         </div>
       </section>
 
-      {/* plans */}
       <section className="section bg-softgrey">
         <div className="container-page">
           <Reveal>
             <SectionHeading
               eyebrow="Room options"
-              title="Rooms for every budget"
-              subtitle="Transparent monthly rent with no hidden charges. Tiffin can be added to any plan."
+              title="Choose your room type"
+              subtitle="Fee depends on room type and current availability. Confirm room, features and payment details before booking."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {PLANS.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.1}>
                 <div className={`card relative flex h-full flex-col p-6 ${p.popular ? 'ring-2 ring-crimson' : ''}`}>
@@ -98,11 +116,15 @@ export default function Hostel() {
                       Most Popular
                     </span>
                   )}
+                  <span className="mb-4 inline-flex w-fit rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-slateblue">
+                    {p.badge}
+                  </span>
                   <p className="font-display text-lg font-bold text-navy">{p.name}</p>
                   <div className="mt-3 flex items-end gap-1">
-                    <span className="font-display text-4xl font-extrabold text-navy">{p.price}</span>
-                    <span className="pb-1 text-sm text-slate-500">{p.per}</span>
+                    <span className="font-display text-3xl font-extrabold text-navy">{p.price}</span>
+                    {p.price !== 'Contact' && <span className="pb-1 text-sm text-slate-500">{p.per}</span>}
                   </div>
+                  <p className="mt-2 text-xs font-semibold text-slate-500">Fee will be shared as per room availability.</p>
                   <ul className="mt-6 flex-1 space-y-3">
                     {p.points.map((pt) => (
                       <li key={pt} className="flex items-start gap-2 text-sm text-slate-600">
@@ -110,9 +132,14 @@ export default function Hostel() {
                       </li>
                     ))}
                   </ul>
-                  <Link to="/contact" className={`mt-6 ${p.popular ? 'btn-crimson' : 'btn-ghost'} w-full`}>
+                  <a
+                    href={`${HOSTEL_WHATSAPP}?text=${encodeURIComponent(`Hello Vidya Education Group, I want hostel details for ${p.name}. Please share features, fee and payment details.`)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`mt-6 ${p.popular ? 'btn-crimson' : 'btn-ghost'} w-full justify-center`}
+                  >
                     Enquire {p.name}
-                  </Link>
+                  </a>
                 </div>
               </Reveal>
             ))}
@@ -123,7 +150,42 @@ export default function Hostel() {
         </div>
       </section>
 
-      {/* amenities strip */}
+      <section className="section">
+        <div className="container-page grid gap-6 lg:grid-cols-[1fr_0.9fr]">
+          <Reveal>
+            <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-card">
+              <h2 className="flex items-center gap-2 font-display text-2xl font-bold text-navy">
+                <MapPin className="h-6 w-6 text-crimson" /> Location & MAP
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">{BRAND.address}</p>
+              <a href={HOSTEL_MAP_URL} target="_blank" rel="noreferrer" className="btn-primary mt-5">
+                <Navigation className="h-4 w-4" /> Open MAP
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="rounded-3xl bg-navy-gradient p-6 text-white shadow-premium">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15">
+                <CreditCard className="h-6 w-6" />
+              </span>
+              <h2 className="mt-5 font-display text-2xl font-bold">Payment Gateway</h2>
+              <p className="mt-3 text-sm leading-relaxed text-brand-100">
+                Select room type, confirm fee and availability, then our team will share payment details for booking.
+              </p>
+              <a
+                href={`${HOSTEL_WHATSAPP}?text=${encodeURIComponent('Hello Vidya Education Group, I want hostel room fee and payment details.')}`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-crimson mt-6 w-full justify-center"
+              >
+                Get Payment Details
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="section pb-4 pt-0">
         <div className="container-page">
           <div className="grid grid-cols-2 gap-4 rounded-3xl bg-navy-gradient p-6 text-white sm:grid-cols-4">

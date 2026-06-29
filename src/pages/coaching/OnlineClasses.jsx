@@ -51,7 +51,7 @@ function FoundationCourse({ course }) {
         </div>
         <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">{course.desc}</p>
       </div>
-      <DetailsLink title={course.title} className="shrink-0" />
+      <DetailsLink title={course.title} label="App Link" className="shrink-0" />
     </div>
   )
 }
@@ -124,7 +124,7 @@ export default function OnlineClasses() {
                     </span>
                   </div>
 
-                  <div className="grid gap-5 lg:grid-cols-2">
+                  <div className="grid gap-5">
                     {ONLINE_COURSE_GROUPS.map((group) => (
                       <div key={group.title} className="rounded-2xl border border-slate-100 bg-white p-4">
                         <div className="mb-3 flex items-start justify-between gap-3">

@@ -8,17 +8,17 @@ import {
   Gem,
   MapPin,
 } from 'lucide-react'
-import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection, Pill } from '../../components/ui.jsx'
+import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection } from '../../components/ui.jsx'
 import { BRAND, LIBRARY_ADDRESSES } from '../../data/site.js'
 import { LIBRARY_FEATURES } from '../../data/libraryFeatures.js'
 import BookingSummary from './BookingSummary.jsx'
 
 export default function LibraryHub() {
   const wings = [
-    { key: 'toppers', icon: BookMarked, tag: 'Value', desc: 'Affordable focused study hall with desks, lighting and charging points.', grad: 'bg-navy-gradient', pills: ['Affordable', 'Good Lighting', 'Reference Books'] },
-    { key: 'digital', icon: Tablet, tag: 'Digital', desc: 'Tablet access, e-books, online mock tests and high-speed fiber Wi-Fi.', grad: 'bg-gradient-to-br from-cyan-500 to-blue-700', pills: ['Tablets', 'E-Books', 'Online Tests'] },
-    { key: 'premium', icon: Crown, tag: 'Premium', desc: 'Executive ergonomic AC cabins, individual plug points and tablet access.', grad: 'bg-gradient-to-br from-crimson to-red-700', pills: ['AC Cabins', 'Tablet Access', 'Fiber Wi-Fi'] },
-    { key: 'luxury', icon: Gem, tag: 'Luxury', desc: 'Five-star private cabins, recliner seating, lounge and priority concierge.', grad: 'bg-gradient-to-br from-amber-500 to-yellow-600', pills: ['Private Cabins', 'Lounge', 'Concierge'] },
+    { key: 'toppers', icon: BookMarked, tag: 'Value', desc: 'Affordable focused study hall with desks, lighting and charging points.', grad: 'bg-navy-gradient' },
+    { key: 'digital', icon: Tablet, tag: 'Digital', desc: 'Tablet access, e-books, online mock tests and high-speed fiber Wi-Fi.', grad: 'bg-gradient-to-br from-cyan-500 to-blue-700' },
+    { key: 'premium', icon: Crown, tag: 'Premium', desc: 'Executive ergonomic AC cabins, individual plug points and tablet access.', grad: 'bg-gradient-to-br from-crimson to-red-700' },
+    { key: 'luxury', icon: Gem, tag: 'Luxury', desc: 'Five-star private cabins, recliner seating, lounge and priority concierge.', grad: 'bg-gradient-to-br from-amber-500 to-yellow-600' },
   ].map((wing) => ({
     ...wing,
     ...LIBRARY_ADDRESSES.find((item) => item.key === wing.key),
@@ -27,10 +27,10 @@ export default function LibraryHub() {
   return (
     <>
       <PageHero
-        eyebrow="Digital Library"
+        eyebrow="Library"
         title="A peaceful 24/7 study zone that never"
         highlight="closes"
-        subtitle="Reserve your seat, pick your slot and study in a calm, disciplined environment with high-speed Wi-Fi and dedicated power at every desk."
+        subtitle="Choose your library, pick your shift and study in a calm, disciplined environment with high-speed Wi-Fi and dedicated power at every desk."
         breadcrumb={[{ label: 'Home', to: '/' }, { label: 'Library' }]}
       >
         <div className="flex flex-wrap items-center gap-4 text-sm text-brand-100">
@@ -43,7 +43,7 @@ export default function LibraryHub() {
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow="Two study wings"
+              eyebrow="4 study wings"
               title="Choose the library that suits you"
               subtitle="Four tiers — from an affordable focused study hall to a five-star luxury cabin experience. Pick the one that fits your goal and budget."
             />
@@ -65,11 +65,9 @@ export default function LibraryHub() {
                       <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-crimson" />
                       {w.address}
                     </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {w.pills.map((p) => (
-                        <Pill key={p}>{p}</Pill>
-                      ))}
-                    </div>
+                    <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-navy px-4 py-2 text-xs font-extrabold uppercase text-white transition group-hover:bg-crimson">
+                      Explore Now <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
                   </div>
                 </Link>
               </Reveal>

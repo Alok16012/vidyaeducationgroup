@@ -98,6 +98,14 @@ const SERVICE_NOTICES = [
     title: 'Notice 2026–2027',
     details: 'Nursing · Paramedical · B.Ed. · Management · Engineering · B.Sc. · B.Pharma Courses',
   },
+  {
+    service: 'Hostel',
+    badge: 'Rooms Open',
+    to: '/hostel',
+    tone: 'amber',
+    title: 'Student Hostel Admission Open',
+    details: 'Safe stay · Wi-Fi · 24/7 security · Study-friendly environment · Limited seats available',
+  },
 ]
 
 export default function Home() {
@@ -257,12 +265,14 @@ function Ticker() {
     slateblue: 'border-slateblue/20 bg-brand-50 text-slateblue',
     emerald: 'border-emerald-200 bg-emerald-50 text-emerald-700',
     navy: 'border-navy/20 bg-slate-100 text-navy',
+    amber: 'border-amber-200 bg-amber-50 text-amber-700',
   }
   const badges = {
     crimson: 'bg-crimson',
     slateblue: 'bg-slateblue',
     emerald: 'bg-emerald-600',
     navy: 'bg-navy',
+    amber: 'bg-amber-600',
   }
 
   return (

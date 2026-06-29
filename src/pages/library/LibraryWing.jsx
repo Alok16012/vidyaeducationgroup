@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import {
   BookOpen,
   Lightbulb,
@@ -20,7 +19,7 @@ import {
   Sofa,
   Headphones,
   Sparkles,
-  CheckCircle2,
+  Info,
   MapPin,
   Navigation,
 } from 'lucide-react'
@@ -29,24 +28,74 @@ import { LIBRARY_ADDRESSES } from '../../data/site.js'
 import { LIBRARY_FEATURES } from '../../data/libraryFeatures.js'
 import BookingSummary from './BookingSummary.jsx'
 
-const PRICE_OPTIONS = [
-  {
-    name: 'Single Shift',
-    price: 'A/C price list',
-    points: ['Morning / Noon / Evening / Night shift', 'Hall-wise seat allotment', 'Online booking support'],
+const PRICE_TABLES = {
+  toppers: {
+    rows: [
+      { shift: 'Flexible Shift', time: '9 AM to 2 PM / 10 AM to 3 PM', oneMonth: '₹350' },
+      { shift: 'Morning', time: '6 AM to 12 PM', oneMonth: '₹250' },
+      { shift: 'Afternoon', time: '12 PM to 5 PM', oneMonth: '₹350' },
+      { shift: 'Evening', time: '5 PM to 10 PM', oneMonth: '₹300' },
+      { shift: 'Flexible Shift', time: '2 PM to 7 PM / 3 PM to 10 PM', oneMonth: '₹400' },
+      { shift: 'Two Shift', time: '6 AM to 5 PM', oneMonth: '₹550' },
+      { shift: 'Two Shift', time: '6 AM to 12 PM & 5 PM to 10 PM', oneMonth: '₹500' },
+      { shift: 'Two Shift', time: '12 PM to 10 PM', oneMonth: '₹600' },
+      { shift: 'All Shift', time: '6 AM to 10 PM', oneMonth: '₹750' },
+    ],
+    addOns: [{ name: 'Locker', oneMonth: '₹50' }],
   },
-  {
-    name: 'Two Shifts',
-    price: 'A/C price list',
-    popular: true,
-    points: ['Extended study hours', 'Same library preference', 'Priority seat confirmation'],
+  digital: {
+    rows: [
+      { shift: 'Morning', time: '6 AM to 12 PM', oneMonth: '₹250', threeMonths: '₹650' },
+      { shift: 'Afternoon', time: '12 PM to 5 PM', oneMonth: '₹400', threeMonths: '₹1,050' },
+      { shift: 'Evening', time: '5 PM to 10 PM', oneMonth: '₹350', threeMonths: '₹900' },
+      { shift: 'Night', time: '10 PM to 6 AM', oneMonth: '₹350', threeMonths: '₹750' },
+      { shift: 'Two Shift', time: '6 AM to 5 PM', oneMonth: '₹600', threeMonths: '₹1,750' },
+      { shift: 'Two Shift', time: '12 PM to 10 PM', oneMonth: '₹700', threeMonths: '₹1,950' },
+      { shift: 'Two Shift', time: '6 AM to 12 PM & 5 PM to 10 PM', oneMonth: '₹550', threeMonths: '₹1,500' },
+      { shift: 'All Shift', time: '6 AM to 10 PM · Reserved for any three shifts', oneMonth: '₹850', threeMonths: '₹2,400' },
+      { shift: 'All Shift', time: '6 AM to 10 PM · Unreserved for any three shifts', oneMonth: '₹750', threeMonths: '₹2,100' },
+      { shift: 'All Shift', time: 'Reserved for 24 hours', oneMonth: '₹900', threeMonths: '₹2,550' },
+    ],
+    addOns: [{ name: 'Locker', oneMonth: '₹50', threeMonths: '₹120' }],
+    bedCharges: [
+      { time: '6 AM to 2 PM', fee: '₹400' },
+      { time: '2 PM to 10 PM', fee: '₹400' },
+      { time: '6 AM to 8 PM', fee: '₹700' },
+      { time: '8 PM to 6 AM', fee: '₹700' },
+      { time: '24 Hours', fee: '₹1,200' },
+    ],
   },
-  {
-    name: 'Bed Shift',
-    price: 'A/C price list',
-    points: ['Bed shift option', 'Limited bed seats: 08', 'Comfort-focused long study support'],
+  premium: {
+    rows: [
+      { shift: 'Morning', time: '6 AM to 12 PM', oneMonth: '₹300', threeMonths: '₹750' },
+      { shift: 'Afternoon', time: '12 PM to 5 PM', oneMonth: '₹400', threeMonths: '₹1,050' },
+      { shift: 'Evening', time: '5 PM to 10 PM', oneMonth: '₹350', threeMonths: '₹900' },
+      { shift: 'Night (AC)', time: '10 PM to 6 AM', oneMonth: '₹350', threeMonths: '₹750' },
+      { shift: 'Two Shift', time: '6 AM to 5 PM', oneMonth: '₹600', threeMonths: '₹1,600' },
+      { shift: 'Two Shift', time: '12 PM to 10 PM', oneMonth: '₹700', threeMonths: '₹2,000' },
+      { shift: 'Two Shift', time: '6 AM to 12 PM & 5 PM to 10 PM', oneMonth: '₹550', threeMonths: '₹1,500' },
+      { shift: 'All Shift', time: '6 AM to 10 PM · Reserved for any three shifts', oneMonth: '₹900', threeMonths: '₹2,500' },
+      { shift: 'All Shift', time: '6 AM to 10 PM · Unreserved for any three shifts', oneMonth: '₹800', threeMonths: '₹2,200' },
+      { shift: 'All Shift', time: 'Reserved for 24 hours', oneMonth: '₹950', threeMonths: '₹2,600' },
+    ],
+    addOns: [{ name: 'Locker', oneMonth: '₹50', threeMonths: '₹120' }],
   },
-]
+  luxury: {
+    rows: [
+      { shift: 'Morning', time: '6 AM to 12 PM', oneMonth: '₹300', threeMonths: '₹750' },
+      { shift: 'Afternoon', time: '12 PM to 5 PM', oneMonth: '₹450', threeMonths: '₹1,200' },
+      { shift: 'Evening', time: '5 PM to 10 PM', oneMonth: '₹400', threeMonths: '₹1,050' },
+      { shift: 'Night (AC)', time: '10 PM to 6 AM', oneMonth: '₹300', threeMonths: '₹750' },
+      { shift: 'Two Shift', time: '6 AM to 5 PM', oneMonth: '₹700', threeMonths: '₹1,950' },
+      { shift: 'Two Shift', time: '12 PM to 10 PM', oneMonth: '₹800', threeMonths: '₹2,250' },
+      { shift: 'Two Shift', time: '6 AM to 12 PM & 5 PM to 10 PM', oneMonth: '₹650', threeMonths: '₹1,800' },
+      { shift: 'All Shift', time: '6 AM to 10 PM · Reserved for any three shifts', oneMonth: '₹950', threeMonths: '₹2,700' },
+      { shift: 'All Shift', time: '6 AM to 10 PM · Unreserved for any three shifts', oneMonth: '₹850', threeMonths: '₹2,400' },
+      { shift: 'All Shift', time: 'Reserved for 24 hours', oneMonth: '₹1,000', threeMonths: '₹2,850' },
+    ],
+    addOns: [{ name: 'Locker', oneMonth: '₹50', threeMonths: '₹120' }],
+  },
+}
 
 const TIERS = {
   toppers: {
@@ -179,6 +228,7 @@ export default function LibraryWing({ tier }) {
   const libraryInfo = LIBRARY_ADDRESSES.find((item) => item.key === tier)
   const libraryLabel = libraryInfo?.label || t.label
   const BadgeIcon = t.badgeIcon
+  const priceTable = PRICE_TABLES[tier]
 
   return (
     <>
@@ -222,38 +272,71 @@ export default function LibraryWing({ tier }) {
           <Reveal>
             <SectionHeading
               eyebrow="Price List"
-              title="A/C pricing by shift"
-              subtitle="Choose single shift, two shifts or bed shift. Final rates are confirmed from the current A/C price list."
+              title={`${libraryLabel} time table & price`}
+              subtitle="Branch-wise shift timing and offer price. One-month and three-month rates are shown where available."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {PRICE_OPTIONS.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.1}>
-                <div className={`card relative flex h-full flex-col p-6 ${p.popular ? 'ring-2 ring-crimson' : ''}`}>
-                  {p.popular && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-crimson px-4 py-1 text-xs font-bold text-white">
-                      Most Popular
-                    </span>
-                  )}
-                  <p className="font-display text-lg font-bold text-navy">{p.name}</p>
-                  <p className="mt-3 rounded-xl bg-softgrey px-4 py-3 text-sm font-bold text-slateblue">{p.price}</p>
-                  <ul className="mt-6 flex-1 space-y-3">
-                    {p.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-2 text-sm text-slate-600">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" /> {pt}
-                      </li>
+          <Reveal delay={0.08}>
+            <div className="mt-12 overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
+              <div className={`bg-gradient-to-r ${t.accent} px-5 py-4 text-white`}>
+                <p className="font-display text-lg font-bold">{libraryLabel}</p>
+                <p className="mt-1 text-xs font-semibold text-white/80">Offer price by shift timing</p>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="min-w-[720px] w-full text-left text-sm">
+                  <thead className="bg-softgrey text-xs uppercase tracking-wider text-slate-500">
+                    <tr>
+                      <th className="px-5 py-3 font-extrabold">Shift</th>
+                      <th className="px-5 py-3 font-extrabold">Time</th>
+                      <th className="px-5 py-3 font-extrabold">Fee 1 Month</th>
+                      <th className="px-5 py-3 font-extrabold">Fee 3 Months</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {priceTable.rows.map((row) => (
+                      <tr key={`${row.shift}-${row.time}`} className="align-top">
+                        <td className="px-5 py-4 font-display font-bold text-navy">{row.shift}</td>
+                        <td className="px-5 py-4 text-slate-600">{row.time}</td>
+                        <td className="px-5 py-4 font-extrabold text-crimson">{row.oneMonth}</td>
+                        <td className="px-5 py-4 font-extrabold text-slateblue">{row.threeMonths || '-'}</td>
+                      </tr>
                     ))}
-                  </ul>
-                  <Link to="/contact" className={`mt-6 ${p.popular ? 'btn-crimson' : 'btn-ghost'} w-full`}>
-                    Choose {p.name}
-                  </Link>
+                    {priceTable.addOns?.map((item) => (
+                      <tr key={item.name} className="bg-slate-50 align-top">
+                        <td className="px-5 py-4 font-display font-bold text-navy">{item.name}</td>
+                        <td className="px-5 py-4 text-slate-600">Add-on facility</td>
+                        <td className="px-5 py-4 font-extrabold text-crimson">{item.oneMonth}</td>
+                        <td className="px-5 py-4 font-extrabold text-slateblue">{item.threeMonths || '-'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </Reveal>
+
+          {priceTable.bedCharges && (
+            <Reveal delay={0.12}>
+              <div className="mt-6 rounded-3xl border border-slate-100 bg-white p-5 shadow-card">
+                <h3 className="font-display text-lg font-bold text-navy">Bed Charge</h3>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                  {priceTable.bedCharges.map((item) => (
+                    <div key={item.time} className="rounded-2xl bg-softgrey p-4">
+                      <p className="text-xs font-bold uppercase text-slate-500">{item.time}</p>
+                      <p className="mt-2 font-display text-2xl font-extrabold text-crimson">{item.fee}</p>
+                    </div>
+                  ))}
                 </div>
-              </Reveal>
-            ))}
+              </div>
+            </Reveal>
+          )}
+
+          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
+            <p className="flex items-start gap-2">
+              <Info className="mt-0.5 h-4 w-4 shrink-0" />
+              <span>Note: 1 & 2 shifts me seat reserve nahi hota hai. Please contact the office for the latest A/C price list before confirming payment.</span>
+            </p>
           </div>
-          <p className="mt-6 text-center text-xs text-slate-400">
-            * Please contact the office for the latest A/C price list before confirming payment.
-          </p>
         </div>
       </section>
 
@@ -298,8 +381,8 @@ export default function LibraryWing({ tier }) {
       </section>
 
       <CTASection
-        title={`Reserve your seat in the ${libraryLabel}`}
-        subtitle="Seats are limited and fill up fast. Secure yours today and study in the environment you deserve."
+        title={`Book your shift in the ${libraryLabel}`}
+        subtitle="Single and two-shift plans do not include reserved seating. Contact the office for current availability and confirmation."
         primary={{ label: 'Book a Seat', to: '/contact' }}
         secondary={{ label: 'Explore Library Hub', to: '/library' }}
       />

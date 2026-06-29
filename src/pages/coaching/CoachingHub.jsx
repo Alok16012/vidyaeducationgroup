@@ -121,7 +121,7 @@ export default function CoachingHub() {
                   <BookOpen className="h-5 w-5 text-slateblue" /> Foundation
                 </h3>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {ONLINE_FOUNDATION_COURSES.slice(0, 9).map((course) => (
+                  {ONLINE_FOUNDATION_COURSES.map((course) => (
                     <Pill key={course.title}>{course.title}</Pill>
                   ))}
                 </div>
@@ -151,7 +151,7 @@ export default function CoachingHub() {
                   <ClipboardCheck className="h-5 w-5 text-crimson" /> Test Series
                 </h3>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {TEST_SERIES.slice(0, 8).map((test) => (
+                  {TEST_SERIES.map((test) => (
                     <Pill key={test} tone="green">{test}</Pill>
                   ))}
                 </div>

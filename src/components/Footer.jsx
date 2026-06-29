@@ -1,13 +1,22 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, Send } from 'lucide-react'
 import Logo from './Logo.jsx'
 import { BRAND, NAV } from '../data/site.js'
 
 export default function Footer() {
+  const [subscriberEmail, setSubscriberEmail] = useState('')
+  const [subscribeMessage, setSubscribeMessage] = useState('')
   const library = NAV.find((n) => n.label === 'Library')
   const coaching = NAV.find((n) => n.label === 'Coaching Centres')
   const tiffin = NAV.find((n) => n.label === 'Tiffin Services')
   const counselling = NAV.find((n) => n.label === 'Consultancy')
+
+  const handleSubscribe = (event) => {
+    event.preventDefault()
+    setSubscribeMessage('Thank you for subscribing')
+    setSubscriberEmail('')
+  }
 
   return (
     <footer className="bg-navy text-slate-300">
@@ -78,20 +87,29 @@ export default function Footer() {
             </p>
             <p className="text-sm text-slate-400">Join our free updates list — no spam, ever.</p>
           </div>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="mt-4 flex max-w-md gap-2 sm:mt-0"
-          >
-            <input
-              type="email"
-              required
-              placeholder="Your email address"
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:border-crimson focus:outline-none"
-            />
-            <button className="btn-crimson shrink-0">
-              <Send className="h-4 w-4" />
-            </button>
-          </form>
+          <div className="mt-4 w-full max-w-md sm:mt-0">
+            <form onSubmit={handleSubscribe} className="flex gap-2">
+              <input
+                type="email"
+                required
+                placeholder="Your email address"
+                value={subscriberEmail}
+                onChange={(event) => {
+                  setSubscriberEmail(event.target.value)
+                  if (subscribeMessage) setSubscribeMessage('')
+                }}
+                className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:border-crimson focus:outline-none"
+              />
+              <button type="submit" className="btn-crimson shrink-0" aria-label="Subscribe">
+                <Send className="h-4 w-4" />
+              </button>
+            </form>
+            {subscribeMessage && (
+              <p className="mt-3 rounded-xl bg-emerald-500/10 px-4 py-2 text-sm font-bold text-emerald-300" role="status" aria-live="polite">
+                {subscribeMessage}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
