@@ -11,7 +11,6 @@ import {
 import { PageHero, SectionHeading, Reveal, FeatureCard, CTASection } from '../../components/ui.jsx'
 import { BRAND, LIBRARY_ADDRESSES } from '../../data/site.js'
 import { LIBRARY_FEATURES } from '../../data/libraryFeatures.js'
-import BookingSummary from './BookingSummary.jsx'
 
 export default function LibraryHub() {
   const wings = [
@@ -74,8 +73,6 @@ export default function LibraryHub() {
           </div>
         </div>
       </section>
-
-      <BookingSummary />
 
       {/* amenities */}
       <section className="section">
